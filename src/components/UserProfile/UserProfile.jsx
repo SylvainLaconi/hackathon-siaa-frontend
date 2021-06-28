@@ -39,7 +39,7 @@ export default function UserProfile() {
   `;
   const AddCommunityButton = styled(Button)`
     width: 9rem;
-    margin-left: 0.7rem;
+    margin-left: 3rem;
   `;
   const Community = styled.div`
     background-color: ${Theme.fiverrYellow};
@@ -54,6 +54,7 @@ export default function UserProfile() {
   const AddCommunityContainer = styled(Container)`
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 100%;
   `;
   return (
     <ComponentContainer flex column aiCenter jcCenter>
@@ -64,9 +65,9 @@ export default function UserProfile() {
         <ProfileText>Contributions : {userData.contributions}</ProfileText>
       </ProfileContainer>
       <AddCommunityContainer flex row>
-        <Community>{userData.community1 && userData.community1}</Community>
-        <Community>{userData.community2 && userData.community2}</Community>
-        <Community>{userData.community3 && userData.community3}</Community>
+        {userData.community1 && <Community>{userData.community1}</Community>}
+        {userData.community2 && <Community>{userData.community2}</Community>}
+        {userData.community3 && <Community>{userData.community3}</Community>}
       </AddCommunityContainer>
       <AddCommunityContainer>
         <Select>
