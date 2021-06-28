@@ -44,6 +44,7 @@ const Theme = {
   fiverrYellowDark: '#254200',
   fiverrPinkDark: '#4d1727',
   fiverrOrangeDark: '#421300',
+  fiverrDarkGray: '#d5d4d2',
 };
 
 export default Theme;

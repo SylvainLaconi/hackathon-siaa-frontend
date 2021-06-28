@@ -1,11 +1,16 @@
-import Button from './components/assets/styles/Button';
-import { Title } from './components/assets/styles/Theme';
+import { ThemeProvider } from 'styled-components';
+import Theme from './components/assets/styles/Theme';
+import GlobalStyle from './components/assets/styles/GlobalStyle';
+import UserProfile from './components/UserProfile/UserProfile';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
-      <Title>Hello !</Title>
-      <Button>Click me !</Button>
+      <ThemeProvider theme={Theme} />
+      <Header />
+      <GlobalStyle />
+      <UserProfile />
     </div>
   );
 }
