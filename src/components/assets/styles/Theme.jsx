@@ -22,6 +22,14 @@ export const Container = styled.div`
   ${(props) => props.jcCenter && 'justify-content:center'};
 `;
 
+export const ComponentContainer = styled(Container)`
+  border: solid 2px;
+  border-radius: 0.5rem;
+  width: 20%;
+  padding: 3%;
+  margin: 3%;
+`;
+
 export const Title = styled.h1`
   font-family: 'Arial', sans-serif;
   font-size: 1.5rem;

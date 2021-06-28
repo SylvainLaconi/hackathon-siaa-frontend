@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Theme, { Title, Container } from '../assets/styles/Theme';
+import Theme, {
+  Title,
+  Container,
+  ComponentContainer,
+} from '../assets/styles/Theme';
 import Select from '../assets/styles/Select';
 import Button from '../assets/styles/Button';
 import picture from '../assets/img/milad.jpg';
@@ -14,11 +18,8 @@ export default function UserProfile() {
     community2: 'Dev back-end',
     community3: 'UX/UI design',
   };
-  const ComponentContainer = styled(Container)`
-    border: solid 2px ${Theme.fiverrYellow};
-    border-radius: 0.5rem;
-    width: 20%;
-    padding: 3%;
+  const ComponentContainerYellow = styled(ComponentContainer)`
+    border-color: ${Theme.fiverrYellow};
   `;
   const ImageAvatar = styled.img`
     clip-path: ellipse(50% 50%);
@@ -57,7 +58,7 @@ export default function UserProfile() {
     width: 100%;
   `;
   return (
-    <ComponentContainer flex column aiCenter jcCenter>
+    <ComponentContainerYellow flex column aiCenter jcCenter>
       <Title>Hello, {userData.userName} !</Title>
       <ImageAvatar src={picture} />
       <ProfileContainer flex column aiCenter jcCenter>
@@ -84,6 +85,6 @@ export default function UserProfile() {
         </Select>
         <AddCommunityButton>Add a community</AddCommunityButton>
       </AddCommunityContainer>
-    </ComponentContainer>
+    </ComponentContainerYellow>
   );
 }
