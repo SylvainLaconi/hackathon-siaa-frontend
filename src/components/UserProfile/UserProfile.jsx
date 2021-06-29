@@ -15,6 +15,9 @@ export default function UserProfile() {
   const [loadingCounter, setLoadingCounter] = useState(true);
   const [userCommunities, setUserCommunities] = useState([]);
   const [loadingCommunity, setLoadingCommunity] = useState(true);
+  const [communityList, setCommunityList] = useState([]);
+  const [loadingList, setLoadingList] = useState(true);
+  const [selectedCommunity, setSelectedCommunity] = useState('');
 
   const getUserInfo = async () => {
     try {
@@ -58,15 +61,40 @@ export default function UserProfile() {
     }
   };
 
+  const getCommunityList = async () => {
+    try {
+      const dataList = await axios.get(`http://localhost:8000/api/community`);
+      setCommunityList(dataList.data);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setLoadingList(false);
+    }
+  };
+
   useEffect(() => {
     getUserInfo();
     getUserCounter();
     getUserCommunities();
+    getCommunityList();
   }, []);
 
   const { firstname, job, user_picture } = !loadingUser && userData;
 
   const { count } = !loadingCounter && userCounter;
+
+  const newCommunityName =
+    !loadingList && selectedCommunity !== '' && selectedCommunity;
+
+  const newCommunityId =
+    !loadingList &&
+    selectedCommunity !== '' &&
+    communityList.filter(
+      (community) => community.community_name === newCommunityName
+    )[0].id;
+
+  console.log(newCommunityId);
 
   const ComponentContainer = styled(Container)`
     border: solid 2px ${Theme.fiverrYellow};
@@ -113,7 +141,8 @@ export default function UserProfile() {
   return (
     !loadingUser &&
     !loadingCounter &&
-    !loadingCommunity && (
+    !loadingCommunity &&
+    !loadingList && (
       <ComponentContainer flex column aiCenter jcCenter>
         <Title>Hello, {firstname} !</Title>
         <ImageAvatar src={user_picture} />
@@ -127,17 +156,13 @@ export default function UserProfile() {
           ))}
         </AddCommunityContainer>
         <Container flex row>
-          <Select>
-            <option value="" disabled selected hidden>
-              Communities
-            </option>
-            <option value="graphism/design">Graphism/Design</option>
-            <option value="digital marketing">Digital marketing</option>
-            <option value="writing/translation">Writing/Translation</option>
-            <option value="video/animation">Video/Animation</option>
-            <option value="music/audio">Music/Audio</option>
-            <option value="programming/tech">Programming/Tech</option>
-            <option value="data">Data</option>
+          <Select
+            value={selectedCommunity}
+            onChange={(e) => setSelectedCommunity(e.target.value)}
+          >
+            {communityList.map((community) => (
+              <option key={community.id}>{community.community_name}</option>
+            ))}
           </Select>
           <AddCommunityButton>Add a community</AddCommunityButton>
         </Container>
