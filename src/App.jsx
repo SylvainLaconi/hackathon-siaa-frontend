@@ -4,6 +4,7 @@ import GlobalStyle from './components/assets/styles/GlobalStyle';
 import UserProfile from './components/UserProfile/UserProfile';
 import Header from './components/Header/Header';
 import NewPost from './components/NewPost/NewPost';
+import Training from './components/Training/Training';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <GlobalStyle />
       <UserProfile />
       <NewPost />
+      <Training />
     </div>
   );
 }
