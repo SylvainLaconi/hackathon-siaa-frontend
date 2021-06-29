@@ -12,6 +12,9 @@ import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { red } from '@material-ui/core/colors';
 import devoxx from '../assets/img/devoxx-france.png';
+import mixit from '../assets/img/mixit2021.jpg';
+import reactSummit from '../assets/img/reactSummit2021.png';
+import dddeurope from '../assets/img/DDD-europe2022.jpg';
 
 const useStyles = makeStyles(() => ({
   avatar: {
@@ -51,7 +54,43 @@ export default function Events() {
           Communauty Events
         </Typography>
       </Box>
-      <Box display="flex" m="20px" gridGap="20px">
+      <Box display="flex" justifyContent="center" m="20px" gridGap="50px">
+        <Card className={classes.root}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="event" className={classes.avatar}>
+                M
+              </Avatar>
+            }
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title="DDD Europe"
+            subheader="June 23-24, 2022"
+          />
+          <CardMedia
+            className={classes.media}
+            image={dddeurope}
+            title="DDD Europe 2022"
+          />
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              A conference for developpers organized by Quantixx in the Palais
+              des Congrès in Paris.
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="share">
+              <ShareIcon />
+            </IconButton>
+          </CardActions>
+          <CardContent />
+        </Card>
         <Card className={classes.root}>
           <CardHeader
             avatar={
@@ -76,6 +115,77 @@ export default function Events() {
             <Typography variant="body2" color="textSecondary" component="p">
               A conference for developpers organized by Quantixx in the Palais
               des Congrès in Paris.
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="share">
+              <ShareIcon />
+            </IconButton>
+          </CardActions>
+          <CardContent />
+        </Card>
+        <Card className={classes.root}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="event" className={classes.avatar}>
+                M
+              </Avatar>
+            }
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title="MiXiT 2021"
+            subheader="May 18, 19 & 20, 2021"
+          />
+          <CardMedia
+            className={classes.media}
+            image={mixit}
+            title="MiXiT 2021"
+          />
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              A conference for developpers. This year, for its 10th edition, the
+              conferences are online, in french and in english !
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="share">
+              <ShareIcon />
+            </IconButton>
+          </CardActions>
+          <CardContent />
+        </Card>
+        <Card className={classes.root}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="event" className={classes.avatar}>
+                M
+              </Avatar>
+            }
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title="React Summit"
+            subheader="April 14-16, 2021"
+          />
+          <CardMedia
+            className={classes.media}
+            image={reactSummit}
+            title="React Summit 2021"
+          />
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              The biggest React conference in the cloud !
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
