@@ -13,6 +13,7 @@ import Training from './components/Training/Training';
 import GoodDeals from './components/GoodDeals/GoodDeals';
 import 'react-toastify/dist/ReactToastify.css';
 import TechActualities from './components/TechActualities/TechActualities';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -68,6 +69,7 @@ function App() {
         ) : (
           <HomePage />
         )}
+        <Footer />
       </UserContext.Provider>
     </div>
   );
