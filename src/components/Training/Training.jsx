@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -11,8 +12,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import ChatIcon from '@material-ui/icons/Chat';
 import styled from 'styled-components';
 import Theme, { Title, Container } from '../assets/styles/Theme';
-import picture1 from '../assets/img/writing.jpg';
-import picture2 from '../assets/img/photo65.jpg';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -23,23 +22,6 @@ const useStyles = makeStyles(() => ({
     paddingTop: '56.25%', // 16:9
   },
 }));
-
-const trainingData = [
-  {
-    title: 'Première formation',
-    picture: picture1,
-    description: 'description',
-    date: '29.06.2021 ',
-    location: 'Paris',
-  },
-  {
-    title: 'Deuxième formation',
-    picture: picture2,
-    description: 'description2',
-    date: '27.06.2021 ',
-    location: 'Lille',
-  },
-];
 
 const ComponentContainer = styled(Container)`
   border: solid 2px ${Theme.fiverrGreen};
@@ -54,44 +36,66 @@ const CardContainer = styled(Container)`
 
 export default function Training() {
   const classes = useStyles();
+  const [training, setTraining] = useState([]);
+  const [loadingTraining, setLoadingTraining] = useState(true);
+  const getTrainingData = async () => {
+    try {
+      const trainingData = await axios.get(`http://localhost:8000/api/post`);
+      setTraining(trainingData.data);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setLoadingTraining(false);
+    }
+  };
+  useEffect(() => {
+    getTrainingData();
+  }, [loadingTraining]);
   return (
     <ComponentContainer flex column jcCenter>
       <Title>Training</Title>
-      {trainingData.map((item) => {
-        return (
-          <CardContainer>
-            <Card className={classes.root}>
-              <CardMedia
-                className={classes.media}
-                image={item.picture}
-                title="Training picture"
-              />
-              <CardContent>
-                <Typography variant="body1" color="textPrimary" component="p">
-                  {item.title}
-                </Typography>
-                <Typography variant="body2" color="textPrimary" component="p">
-                  {item.description}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {item.date} | {item.location}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                  <ShareIcon />
-                </IconButton>
-                <IconButton>
-                  <ChatIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </CardContainer>
-        );
-      })}
+      {training
+        .filter((item) => item.post_category_id === 5)
+        .map((item) => {
+          return (
+            <CardContainer>
+              <Card className={classes.root}>
+                <CardMedia
+                  className={classes.media}
+                  image={item.picture}
+                  title="Training picture"
+                />
+                <CardContent>
+                  <Typography variant="body1" color="textPrimary" component="p">
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2" color="textPrimary" component="p">
+                    {item.content}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {item.date} | {item.location}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                  <IconButton aria-label="share">
+                    <ShareIcon />
+                  </IconButton>
+                  <IconButton>
+                    <ChatIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </CardContainer>
+          );
+        })}
     </ComponentContainer>
   );
 }
