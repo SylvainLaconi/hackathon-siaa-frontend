@@ -63,14 +63,12 @@ export default function UserProfile() {
   const [selectedCommunity, setSelectedCommunity] = useState('');
   const [newCommunity, setNewCommunity] = useState(false);
 
-  console.log('userId', userId);
-
-  console.log(userInfo);
+  const userId = !loadingInfo && userInfo.user_id;
 
   const getUserCounter = async () => {
     try {
       const dataCounter = await axios.get(
-        `http://localhost:8000/api/post/${userInfo.user_id}`
+        `http://localhost:8000/api/post/${userId}`
       );
       setUserCounter(dataCounter.data[0]);
     } catch (error) {
@@ -84,7 +82,7 @@ export default function UserProfile() {
   const getUserCommunities = async () => {
     try {
       const dataCommunity = await axios.get(
-        `http://localhost:8000/api/user/community/${userInfo.user_id}`
+        `http://localhost:8000/api/user/community/${userId}`
       );
       setUserCommunities(dataCommunity.data);
     } catch (error) {
@@ -111,7 +109,7 @@ export default function UserProfile() {
     getUserCounter();
     getUserCommunities();
     getCommunityList();
-  }, [newCommunity]);
+  }, [newCommunity, userInfo]);
 
   const { firstname, job, user_picture } = !loadingInfo && userInfo;
 
