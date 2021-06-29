@@ -11,11 +11,13 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import Avatar from '@material-ui/core/Avatar';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import { Image } from '@material-ui/icons';
 import mouse from '../assets/img/mouse.jpg';
+import screen from '../assets/img/screen.jpg';
+import cable from '../assets/img/cable.jpg';
+import computer from '../assets/img/macbook.jpg';
+import tablet from '../assets/img/tablet.jpg';
+import printer from '../assets/img/printer.png';
 
 function TabPanel(props) {
   // eslint-disable-next-line react/prop-types
@@ -96,26 +98,62 @@ export default function GoodDeals() {
                 />
               </ListItem>
               <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <WorkIcon />
-                  </Avatar>
-                </ListItemAvatar>
+                <Image>image={screen}</Image>
                 <ListItemText
                   primary="Screen 24 inch"
-                  secondary="Juin 26, 2021 "
+                  secondary="Juin 26, 2021 This Apple screen is to sell for 350$, color white."
                 />
               </ListItem>
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
+                  <Image>image={cable}</Image>
                 </ListItemAvatar>
                 <ListItemText
                   primary="Cable USB"
-                  secondary="July 13, 2021"
-                  price="10$"
+                  secondary="July 13, 2021 This câble USB is to sell for 5$. Never used."
+                />
+              </ListItem>
+            </List>
+          </TabPanel>
+          <TabPanel value={tab} index={1}>
+            <List className={classes.root}>
+              <ListItem>
+                <Image>image={computer}</Image>
+                <ListItemText
+                  primary="MacBook Air"
+                  secondary="May 29, 2021 My MacBook Air is to rent for 40$/month."
+                />
+              </ListItem>
+              <ListItem>
+                <Image>image={tablet}</Image>
+                <ListItemText
+                  primary="iPad Pro 3 tablet"
+                  secondary="May 25, 2021 This tablet is to rent for 35$/month."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemAvatar>
+                  <Image>image={printer}</Image>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Printer HP officeJet Pro 8000"
+                  secondary="July 13, 2021 This printer is to rent for 75$/month."
+                />
+              </ListItem>
+            </List>
+          </TabPanel>
+          <TabPanel value={tab} index={2}>
+            <List className={classes.root}>
+              <ListItem>
+                <ListItemText
+                  primary="JavaScript classes"
+                  secondary="June 16, 2021 Hello, I'm looking for someone to teach some basis in JS. I live in Paris and I'm available every weekend. Thank you !"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="UX UI Designer"
+                  secondary="May 30, 2021 Hi, I'm working on a personal projet and I need a professional help of an UX UI designer. Someone to join my team ? I'll give you more details later ;-)"
                 />
               </ListItem>
             </List>
