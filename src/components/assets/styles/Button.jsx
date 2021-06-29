@@ -8,7 +8,7 @@ const Button = styled.button`
   border-radius: 0.5rem;
   padding: 0.7rem;
   width: 10rem;
-  margin-top: 1rem;
+  margin: 1rem 0 1rem 0;
   font-family: 'Arial', sans-serif;
   &:hover {
     background-color: ${Theme.fiverrGreen};
