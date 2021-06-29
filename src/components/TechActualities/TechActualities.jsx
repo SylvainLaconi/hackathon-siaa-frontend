@@ -61,7 +61,7 @@ export default function TechActualities() {
   const classes = useStyles();
   return (
     <ComponentContainer flex column jcCenter>
-      <Title>Training</Title>
+      <Title>Tech Actualities</Title>
       {trainingData.map((item) => {
         return (
           <CardContainer>
