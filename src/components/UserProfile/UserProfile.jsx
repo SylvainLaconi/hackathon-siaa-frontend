@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 import UserContext from '../assets/UserContext';
 import Select from '../assets/styles/Select';
@@ -61,7 +62,7 @@ export default function UserProfile() {
   const [communityList, setCommunityList] = useState([]);
   const [loadingList, setLoadingList] = useState(true);
   const [selectedCommunity, setSelectedCommunity] = useState('');
-  const [newPost, setNewPost] = useState(false);
+  const [newCommunity, setNewCommunity] = useState(false);
 
   const getUserInfo = async () => {
     try {
@@ -122,7 +123,7 @@ export default function UserProfile() {
     getUserCounter();
     getUserCommunities();
     getCommunityList();
-  }, [newPost]);
+  }, [newCommunity]);
 
   const { firstname, job, user_picture } = !loadingUser && userData;
 
@@ -144,18 +145,14 @@ export default function UserProfile() {
         user_id: userId,
         community_id: newCommunityId,
       });
-      setNewPost(true);
+      setNewCommunity(true);
+      toast.success('Community correctly added');
     } catch (error) {
       // eslint-disable-next-line no-console
-      if (error) {
-        // eslint-disable-next-line no-alert
-        alert('Error adding new community');
-      } else {
-        // eslint-disable-next-line no-alert
-        alert('Community successfully added');
-      }
+      console.log(error);
+      toast.error(`${error.message}`);
     } finally {
-      setNewPost(false);
+      setNewCommunity(false);
     }
   };
 
@@ -189,6 +186,18 @@ export default function UserProfile() {
             Add a community
           </AddCommunityButton>
         </Container>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </ComponentContainer>
     )
   );

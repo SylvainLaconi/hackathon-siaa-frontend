@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+
 import Theme from './components/assets/styles/Theme';
 import GlobalStyle from './components/assets/styles/GlobalStyle';
 import UserProfile from './components/UserProfile/UserProfile';
@@ -9,6 +10,7 @@ import NewPost from './components/NewPost/NewPost';
 import UserContext from './components/assets/UserContext';
 import HomePage from './components/HomePage/HomePage';
 import Training from './components/Training/Training';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
