@@ -128,7 +128,11 @@ export default function GoodDeals() {
           <TabPanel value={tab} index={1}>
             <List className={classes.root}>
               {goodDeals
-                .filter((item) => item.post_category_id === 2)
+                .filter(
+                  (item) =>
+                    item.post_category_id === 2 &&
+                    item.user_id === userInfo.user_id
+                )
                 .map((item) => (
                   <ListItem>
                     <img
