@@ -71,7 +71,7 @@ export default function Training() {
                     {item.title}
                   </Typography>
                   <Typography variant="body2" color="textPrimary" component="p">
-                    {item.description}
+                    {item.content}
                   </Typography>
                   <Typography
                     variant="body2"
