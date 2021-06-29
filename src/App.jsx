@@ -9,6 +9,7 @@ import NewPost from './components/NewPost/NewPost';
 import UserContext from './components/assets/UserContext';
 import HomePage from './components/HomePage/HomePage';
 import Training from './components/Training/Training';
+import TechActualities from './components/TechActualities/TechActualities';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -28,6 +29,7 @@ function App() {
             <UserProfile />
             <NewPost />
             <Events />
+            <TechActualities />
             <Training />
           </div>
         ) : (
