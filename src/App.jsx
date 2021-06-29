@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { ThemeProvider } from 'styled-components';
 import Theme from './components/assets/styles/Theme';
 import GlobalStyle from './components/assets/styles/GlobalStyle';
@@ -10,24 +11,47 @@ import UserContext from './components/assets/UserContext';
 import HomePage from './components/HomePage/HomePage';
 import Training from './components/Training/Training';
 import GoodDeals from './components/GoodDeals/GoodDeals';
+import 'react-toastify/dist/ReactToastify.css';
 import TechActualities from './components/TechActualities/TechActualities';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
-  const [userId, setUserId] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userInfo, setUserInfo] = useState([]);
+  const [loadingInfo, setLoadingInfo] = useState(true);
+
+  const getUserInfo = async () => {
+    try {
+      const dataUser =
+        userName !== '' &&
+        (await axios.get(
+          `http://localhost:8000/api/user/lastname/${userName}`
+        ));
+      setUserInfo(dataUser.data[0]);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setLoadingInfo(false);
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, [userName]);
 
   return (
     <div className="App">
       <ThemeProvider theme={Theme} />
-      <Header />
-      <GlobalStyle />
-      <UserProfile />
-      <GoodDeals />
-      <NewPost />
-      <Events />
-      <Training />
       <UserContext.Provider
-        value={{ isLogged, setIsLogged, userId, setUserId }}
+        value={{
+          isLogged,
+          setIsLogged,
+          userName,
+          setUserName,
+          userInfo,
+          loadingInfo,
+        }}
       >
         <Header />
 
@@ -35,6 +59,7 @@ function App() {
           <div>
             <GlobalStyle />
             <UserProfile />
+            <GoodDeals />
             <NewPost />
             <Events />
             <TechActualities />

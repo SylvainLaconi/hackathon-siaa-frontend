@@ -2,33 +2,68 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 import UserContext from '../assets/UserContext';
 import Select from '../assets/styles/Select';
 import { Button } from '../assets/styles/Button';
 
+const ComponentContainer = styled(Container)`
+  border: solid 2px ${Theme.fiverrYellow};
+  border-radius: 0.5rem;
+  width: 20%;
+  padding: 3%;
+  margin: 1%;
+`;
+const ImageAvatar = styled.img`
+  clip-path: ellipse(50% 50%);
+  object-fit: cover;
+  width: 10rem;
+  height: 10rem;
+`;
+const ProfileContainer = styled(Container)`
+  margin-top: 5%;
+  padding: 0 7% 3% 7%;
+`;
+const ProfileTitle = styled.h2`
+  font-size: 1.2rem;
+`;
+const ProfileText = styled.p`
+  font-size: 0.9rem;
+`;
+const AddCommunityButton = styled(Button)`
+  width: 9rem;
+  margin-left: 3rem;
+`;
+const Community = styled.div`
+  background-color: ${Theme.fiverrYellow};
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  width: 9rem;
+  text-align: center;
+  vertical-align: middle;
+`;
+const AddCommunityContainer = styled(Container)`
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
 export default function UserProfile() {
-  const { userId } = useContext(UserContext);
-  const [userData, setUserData] = useState([]);
-  const [loadingUser, setLoadingUser] = useState(true);
+  const { userInfo, loadingInfo } = useContext(UserContext);
+
   const [userCounter, setUserCounter] = useState(0);
   const [loadingCounter, setLoadingCounter] = useState(true);
   const [userCommunities, setUserCommunities] = useState([]);
   const [loadingCommunity, setLoadingCommunity] = useState(true);
+  const [communityList, setCommunityList] = useState([]);
+  const [loadingList, setLoadingList] = useState(true);
+  const [selectedCommunity, setSelectedCommunity] = useState('');
+  const [newCommunity, setNewCommunity] = useState(false);
 
-  const getUserInfo = async () => {
-    try {
-      const dataUser = await axios.get(
-        `http://localhost:8000/api/user/${userId}`
-      );
-      setUserData(dataUser.data[0]);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    } finally {
-      setLoadingUser(false);
-    }
-  };
+  const userId = !loadingInfo && userInfo.user_id;
 
   const getUserCounter = async () => {
     try {
@@ -58,62 +93,60 @@ export default function UserProfile() {
     }
   };
 
+  const getCommunityList = async () => {
+    try {
+      const dataList = await axios.get(`http://localhost:8000/api/community`);
+      setCommunityList(dataList.data);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setLoadingList(false);
+    }
+  };
+
   useEffect(() => {
-    getUserInfo();
     getUserCounter();
     getUserCommunities();
-  }, []);
+    getCommunityList();
+  }, [newCommunity, userInfo]);
 
-  const { firstname, job, user_picture } = !loadingUser && userData;
+  const { firstname, job, user_picture } = !loadingInfo && userInfo;
 
   const { count } = !loadingCounter && userCounter;
 
-  const ComponentContainer = styled(Container)`
-    border: solid 2px ${Theme.fiverrYellow};
-    border-radius: 0.5rem;
-    width: 20%;
-    padding: 3%;
-    margin: 1%;
-  `;
-  const ImageAvatar = styled.img`
-    clip-path: ellipse(50% 50%);
-    object-fit: cover;
-    width: 10rem;
-    height: 10rem;
-  `;
-  const ProfileContainer = styled(Container)`
-    margin-top: 5%;
-    padding: 0 7% 3% 7%;
-  `;
-  const ProfileTitle = styled.h2`
-    font-size: 1.2rem;
-  `;
-  const ProfileText = styled.p`
-    font-size: 0.9rem;
-  `;
-  const AddCommunityButton = styled(Button)`
-    width: 9rem;
-    margin-left: 3rem;
-  `;
-  const Community = styled.div`
-    background-color: ${Theme.fiverrYellow};
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    border-radius: 0.5rem;
-    width: 9rem;
-    text-align: center;
-    vertical-align: middle;
-  `;
-  const AddCommunityContainer = styled(Container)`
-    justify-content: space-around;
-    flex-wrap: wrap;
-    width: 100%;
-  `;
+  const newCommunityName =
+    !loadingList && selectedCommunity !== '' && selectedCommunity;
+
+  const newCommunityId =
+    !loadingList &&
+    selectedCommunity !== '' &&
+    communityList.filter(
+      (community) => community.community_name === newCommunityName
+    )[0].id;
+
+  const postNewCommunity = async () => {
+    try {
+      await axios.post('http://localhost:8000/api/community', {
+        user_id: userId,
+        community_id: newCommunityId,
+      });
+      setNewCommunity(true);
+      toast.success('Community correctly added');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+      toast.error(`${error.message}`);
+    } finally {
+      setNewCommunity(false);
+    }
+  };
+
   return (
-    !loadingUser &&
+    !loadingInfo &&
     !loadingCounter &&
-    !loadingCommunity && (
+    !loadingCommunity &&
+    !loadingList && (
       <ComponentContainer flex column aiCenter jcCenter>
         <Title>Hello, {firstname} !</Title>
         <ImageAvatar src={user_picture} />
@@ -127,20 +160,30 @@ export default function UserProfile() {
           ))}
         </AddCommunityContainer>
         <Container flex row>
-          <Select>
-            <option value="" disabled selected hidden>
-              Communities
-            </option>
-            <option value="graphism/design">Graphism/Design</option>
-            <option value="digital marketing">Digital marketing</option>
-            <option value="writing/translation">Writing/Translation</option>
-            <option value="video/animation">Video/Animation</option>
-            <option value="music/audio">Music/Audio</option>
-            <option value="programming/tech">Programming/Tech</option>
-            <option value="data">Data</option>
+          <Select
+            value={selectedCommunity}
+            onChange={(e) => setSelectedCommunity(e.target.value)}
+          >
+            {communityList.map((community) => (
+              <option key={community.id}>{community.community_name}</option>
+            ))}
           </Select>
-          <AddCommunityButton>Add a community</AddCommunityButton>
+          <AddCommunityButton onClick={postNewCommunity}>
+            Add a community
+          </AddCommunityButton>
         </Container>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </ComponentContainer>
     )
   );
