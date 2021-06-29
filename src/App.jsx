@@ -13,6 +13,7 @@ import Training from './components/Training/Training';
 import GoodDeals from './components/GoodDeals/GoodDeals';
 import 'react-toastify/dist/ReactToastify.css';
 import TechActualities from './components/TechActualities/TechActualities';
+import Forum from './components/Forum/Forum';
 import Footer from './components/Footer/Footer';
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
             <Events />
             <TechActualities />
             <Training />
+            <Forum />
           </div>
         ) : (
           <HomePage />

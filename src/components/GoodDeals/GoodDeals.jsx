@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -11,6 +11,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import axios from 'axios';
+import UserContext from '../assets/UserContext';
 
 function TabPanel(props) {
   // eslint-disable-next-line react/prop-types
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GoodDeals() {
   const classes = useStyles();
+  const { userInfo } = useContext(UserContext);
   const [goodDeals, setGoodDeals] = useState([]);
   const [loadingGoodDeals, setLoadingGoodDeals] = useState(true);
   const [tab, setTab] = React.useState(0);
@@ -101,7 +103,11 @@ export default function GoodDeals() {
           <TabPanel value={tab} index={0}>
             <List className={classes.root}>
               {goodDeals
-                .filter((item) => item.post_category_id === 2)
+                .filter(
+                  (item) =>
+                    item.post_category_id === 2 &&
+                    item.user_id === userInfo.user_id
+                )
                 .map((item) => (
                   <ListItem>
                     <img
