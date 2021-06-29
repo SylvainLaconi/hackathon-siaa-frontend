@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -11,6 +11,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ChatIcon from '@material-ui/icons/Chat';
 import styled from 'styled-components';
+import UserContext from '../assets/UserContext';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 
 const useStyles = makeStyles(() => ({
@@ -36,6 +37,7 @@ const CardContainer = styled(Container)`
 
 export default function Training() {
   const classes = useStyles();
+  const { userInfo } = useContext(UserContext);
   const [training, setTraining] = useState([]);
   const [loadingTraining, setLoadingTraining] = useState(true);
   const getTrainingData = async () => {
@@ -56,7 +58,10 @@ export default function Training() {
     <ComponentContainer flex column jcCenter>
       <Title>Training</Title>
       {training
-        .filter((item) => item.post_category_id === 5)
+        .filter(
+          (item) =>
+            item.post_category_id === 5 && item.user_id === userInfo.user_id
+        )
         .map((item) => {
           return (
             <CardContainer>
