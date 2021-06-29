@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Events from './components/Events/Events';
 import NewPost from './components/NewPost/NewPost';
 import Training from './components/Training/Training';
+import GoodDeals from './components/GoodDeals/GoodDeals';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Header />
       <GlobalStyle />
       <UserProfile />
+      <GoodDeals />
       <NewPost />
       <Events />
       <Training />
