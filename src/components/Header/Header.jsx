@@ -13,6 +13,12 @@ const HeaderContainer = styled(Container)`
   border-bottom: solid 1px ${Theme.fiverrDarkGray};
   margin-bottom: 10px;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 1;
 `;
 const FiverrLogo = styled.img`
   width: 5rem;
