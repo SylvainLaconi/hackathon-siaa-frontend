@@ -40,7 +40,7 @@ const trainingData = [
   },
 ];
 
-export default function RecipeReviewCard() {
+export default function Training() {
   const classes = useStyles();
   const ComponentContainer = styled(Container)`
     border: solid 2px ${Theme.fiverrGreen};
