@@ -29,20 +29,20 @@ const LogOutIcon = styled(RiLogoutCircleRLine)`
 `;
 
 export default function Header() {
-  const { isLogged, setIsLogged, setUserId } = useContext(UserContext);
-  const [userName, setUserName] = useState('');
+  const { isLogged, setIsLogged, setUserName } = useContext(UserContext);
+  const [loggedName, setLoggedName] = useState('');
 
   const HandleChange = (e) => {
-    setUserName(e.target.value);
+    setLoggedName(e.target.value);
   };
 
   const HandleLogging = () => {
-    setUserName(userName);
+    setUserName(loggedName);
     setIsLogged(true);
   };
 
   const HandleLoggout = () => {
-    setUserId('');
+    setUserName('');
     setIsLogged(false);
   };
 
@@ -58,7 +58,7 @@ export default function Header() {
         >
           <StyledInput
             placeholder="Login ..."
-            value={userName}
+            value={loggedName}
             onChange={HandleChange}
           />
 
