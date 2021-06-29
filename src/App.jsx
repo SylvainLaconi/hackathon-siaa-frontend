@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import NewPost from './components/NewPost/NewPost';
 import UserContext from './components/assets/UserContext';
 import HomePage from './components/HomePage/HomePage';
+import Training from './components/Training/Training';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -25,6 +26,7 @@ function App() {
             <GlobalStyle />
             <UserProfile />
             <NewPost />
+            <Training />
           </div>
         ) : (
           <HomePage />
