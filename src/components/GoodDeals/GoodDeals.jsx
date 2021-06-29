@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -6,17 +6,11 @@ import {
   Box,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemText,
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import mouse from '../assets/img/mouse.jpg';
-import screen from '../assets/img/screen.jpg';
-import cable from '../assets/img/cable.jpg';
-import computer from '../assets/img/macbook.jpg';
-import tablet from '../assets/img/tablet.jpg';
-import printer from '../assets/img/printer.png';
+import axios from 'axios';
 
 function TabPanel(props) {
   // eslint-disable-next-line react/prop-types
@@ -57,10 +51,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GoodDeals() {
   const classes = useStyles();
+  const [goodDeals, setGoodDeals] = useState([]);
+  const [loadingGoodDeals, setLoadingGoodDeals] = useState(true);
   const [tab, setTab] = React.useState(0);
   const handleChange = (event, newTab) => {
     setTab(newTab);
   };
+  const getGoodDealsData = async () => {
+    try {
+      const goodDealsData = await axios.get(`http://localhost:8000/api/post`);
+      setGoodDeals(goodDealsData.data);
+    } finally {
+      setLoadingGoodDeals(false);
+    }
+  };
+  useEffect(() => {
+    getGoodDealsData();
+  }, [loadingGoodDeals]);
   return (
     <Box
       display="flex"
@@ -93,56 +100,44 @@ export default function GoodDeals() {
           </Tabs>
           <TabPanel value={tab} index={0}>
             <List className={classes.root}>
-              <ListItem>
-                <img className={classes.photo} src={mouse} alt="mouse" />
-                <ListItemText
-                  primary="Mouse"
-                  secondary="June 29, 2021 This mouse is to sell for 5$."
-                />
-              </ListItem>
-              <ListItem>
-                <img className={classes.photo} src={screen} alt="screen" />
-                <ListItemText
-                  primary="Screen 24 inch"
-                  secondary="Juin 26, 2021 This Apple screen is to sell for 350$, color white."
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemAvatar>
-                  <img className={classes.photo} src={cable} alt="cable" />
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Cable USB"
-                  secondary="July 13, 2021 This câble USB is to sell for 5$. Never used."
-                />
-              </ListItem>
+              {goodDeals
+                .filter((item) => item.post_category_id === 2)
+                .map((item) => (
+                  <ListItem>
+                    <img
+                      className={classes.photo}
+                      src={item.picture}
+                      alt={item.title}
+                    />
+                    <ListItemText
+                      primary={item.title}
+                      secondary={`${item.date.substr(0, 10)}, This ${
+                        item.title
+                      } is to sell for ${item.content}.`}
+                    />
+                  </ListItem>
+                ))}
             </List>
           </TabPanel>
           <TabPanel value={tab} index={1}>
             <List className={classes.root}>
-              <ListItem>
-                <img className={classes.photo} src={computer} alt="computer" />
-                <ListItemText
-                  primary="MacBook Air"
-                  secondary="May 29, 2021 My MacBook Air is to rent for 40$/month."
-                />
-              </ListItem>
-              <ListItem>
-                <img className={classes.photo} src={tablet} alt="tablet" />
-                <ListItemText
-                  primary="iPad Pro 3 tablet"
-                  secondary="May 25, 2021 This tablet is to rent for 35$/month."
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemAvatar>
-                  <img className={classes.photo} src={printer} alt="printer" />
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Printer HP officeJet Pro 8000"
-                  secondary="July 13, 2021 This printer is to rent for 75$/month."
-                />
-              </ListItem>
+              {goodDeals
+                .filter((item) => item.post_category_id === 2)
+                .map((item) => (
+                  <ListItem>
+                    <img
+                      className={classes.photo}
+                      src={item.picture}
+                      alt={item.title}
+                    />
+                    <ListItemText
+                      primary={item.title}
+                      secondary={`${item.date.substr(0, 10)}, This ${
+                        item.title
+                      } is to sell for ${item.content}.`}
+                    />
+                  </ListItem>
+                ))}
             </List>
           </TabPanel>
           <TabPanel value={tab} index={2}>
