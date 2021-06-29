@@ -134,7 +134,7 @@ export default function GoodDeals() {
                       primary={item.title}
                       secondary={`${item.date.substr(0, 10)}, This ${
                         item.title
-                      } is to sell for ${item.content}.`}
+                      } is to rent for ${item.content}.`}
                     />
                   </ListItem>
                 ))}
