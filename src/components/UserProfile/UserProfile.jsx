@@ -64,6 +64,8 @@ export default function UserProfile() {
   const [selectedCommunity, setSelectedCommunity] = useState('');
   const [newCommunity, setNewCommunity] = useState(false);
 
+  console.log('userId', userId);
+
   const getUserInfo = async () => {
     try {
       const dataUser = await axios.get(

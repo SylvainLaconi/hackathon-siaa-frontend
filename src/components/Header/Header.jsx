@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { RiLogoutCircleRLine } from 'react-icons/ri/';
 import Theme, { Container } from '../assets/styles/Theme';
 import fiverrLogo from '../assets/img/fiverrLogo.svg';
-import Input from '../assets/styles/Input';
+import StyledInput from '../assets/styles/Input';
 import { SmallButton } from '../assets/styles/Button';
 import UserContext from '../assets/UserContext';
 
@@ -21,11 +21,11 @@ const FiverrLogo = styled.img`
 `;
 
 const LogOutIcon = styled(RiLogoutCircleRLine)`
-width: 1.5rem;
-height: 1.5rem;
-color: ${Theme.fiverrGreenMedium};
-margin-right: 2rem;
-cursor: pointer;:;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: ${Theme.fiverrGreenMedium};
+  margin-right: 2rem;
+  cursor: pointer;
 `;
 
 export default function Header() {
@@ -37,7 +37,7 @@ export default function Header() {
   };
 
   const HandleLogging = () => {
-    setUserId(userName);
+    setUserName(userName);
     setIsLogged(true);
   };
 
@@ -56,10 +56,10 @@ export default function Header() {
             marginRight: '1rem',
           }}
         >
-          <Input
+          <StyledInput
             placeholder="Login ..."
             value={userName}
-            onChange={(e) => HandleChange(e)}
+            onChange={HandleChange}
           />
 
           <SmallButton onClick={HandleLogging}>Logging</SmallButton>
@@ -73,7 +73,7 @@ export default function Header() {
             marginRight: '1rem',
           }}
         >
-          <Input placeholder="Search ..." />
+          <StyledInput placeholder="Search ..." />
           <LogOutIcon onClick={HandleLoggout} />
         </div>
       )}

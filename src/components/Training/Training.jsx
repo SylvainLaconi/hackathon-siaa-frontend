@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import ChatIcon from '@material-ui/icons/Chat';
 import styled from 'styled-components';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 import picture1 from '../assets/img/writing.jpg';
@@ -40,20 +41,21 @@ const trainingData = [
   },
 ];
 
-export default function RecipeReviewCard() {
+const ComponentContainer = styled(Container)`
+  border: solid 2px ${Theme.fiverrGreen};
+  border-radius: 0.5rem;
+  width: 20%;
+  margin: 1%;
+  padding: 1%;
+`;
+const CardContainer = styled(Container)`
+  margin: 5% 0 0 0;
+`;
+
+export default function Training() {
   const classes = useStyles();
-  const ComponentContainer = styled(Container)`
-    border: solid 2px ${Theme.fiverrGreen};
-    border-radius: 0.5rem;
-    width: 20%;
-    margin: 1%;
-    padding: 1%;
-  `;
-  const CardContainer = styled(Container)`
-    margin: 5% 0 0 0;
-  `;
   return (
-    <ComponentContainer>
+    <ComponentContainer flex column jcCenter>
       <Title>Training</Title>
       {trainingData.map((item) => {
         return (
@@ -81,6 +83,9 @@ export default function RecipeReviewCard() {
                 </IconButton>
                 <IconButton aria-label="share">
                   <ShareIcon />
+                </IconButton>
+                <IconButton>
+                  <ChatIcon />
                 </IconButton>
               </CardActions>
             </Card>
