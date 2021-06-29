@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 import Select from '../assets/styles/Select';
-import Button from '../assets/styles/Button';
+import { Button } from '../assets/styles/Button';
 import picture from '../assets/img/milad.jpg';
 
 export default function UserProfile() {
