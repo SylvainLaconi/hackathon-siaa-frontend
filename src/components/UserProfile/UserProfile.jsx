@@ -52,9 +52,8 @@ const AddCommunityContainer = styled(Container)`
 `;
 
 export default function UserProfile() {
-  const { userId } = useContext(UserContext);
-  const [userData, setUserData] = useState([]);
-  const [loadingUser, setLoadingUser] = useState(true);
+  const { userInfo, loadingInfo } = useContext(UserContext);
+
   const [userCounter, setUserCounter] = useState(0);
   const [loadingCounter, setLoadingCounter] = useState(true);
   const [userCommunities, setUserCommunities] = useState([]);
@@ -66,24 +65,12 @@ export default function UserProfile() {
 
   console.log('userId', userId);
 
-  const getUserInfo = async () => {
-    try {
-      const dataUser = await axios.get(
-        `http://localhost:8000/api/user/${userId}`
-      );
-      setUserData(dataUser.data[0]);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    } finally {
-      setLoadingUser(false);
-    }
-  };
+  console.log(userInfo);
 
   const getUserCounter = async () => {
     try {
       const dataCounter = await axios.get(
-        `http://localhost:8000/api/post/${userId}`
+        `http://localhost:8000/api/post/${userInfo.user_id}`
       );
       setUserCounter(dataCounter.data[0]);
     } catch (error) {
@@ -97,7 +84,7 @@ export default function UserProfile() {
   const getUserCommunities = async () => {
     try {
       const dataCommunity = await axios.get(
-        `http://localhost:8000/api/user/community/${userId}`
+        `http://localhost:8000/api/user/community/${userInfo.user_id}`
       );
       setUserCommunities(dataCommunity.data);
     } catch (error) {
@@ -121,13 +108,12 @@ export default function UserProfile() {
   };
 
   useEffect(() => {
-    getUserInfo();
     getUserCounter();
     getUserCommunities();
     getCommunityList();
   }, [newCommunity]);
 
-  const { firstname, job, user_picture } = !loadingUser && userData;
+  const { firstname, job, user_picture } = !loadingInfo && userInfo;
 
   const { count } = !loadingCounter && userCounter;
 
@@ -159,7 +145,7 @@ export default function UserProfile() {
   };
 
   return (
-    !loadingUser &&
+    !loadingInfo &&
     !loadingCounter &&
     !loadingCommunity &&
     !loadingList && (
