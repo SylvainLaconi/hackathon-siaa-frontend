@@ -62,7 +62,7 @@ export default function Header() {
             onChange={HandleChange}
           />
 
-          <SmallButton onClick={HandleLogging}>Ok</SmallButton>
+          <SmallButton onClick={HandleLogging}>Logging</SmallButton>
         </div>
       ) : (
         <div
