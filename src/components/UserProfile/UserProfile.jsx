@@ -1,19 +1,73 @@
-import React from 'react';
+/* eslint-disable camelcase */
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import Theme, { Title, Container } from '../assets/styles/Theme';
+import UserContext from '../assets/UserContext';
 import Select from '../assets/styles/Select';
-import Button from '../assets/styles/Button';
-import picture from '../assets/img/milad.jpg';
+import { Button } from '../assets/styles/Button';
 
 export default function UserProfile() {
-  const userData = {
-    userName: 'Milad',
-    job: 'Développeur fullstack',
-    contributions: 5,
-    community1: 'Dev front-end',
-    community2: 'Dev back-end',
-    community3: 'UX/UI design',
+  const { userId } = useContext(UserContext);
+  const [userData, setUserData] = useState([]);
+  const [loadingUser, setLoadingUser] = useState(true);
+  const [userCounter, setUserCounter] = useState(0);
+  const [loadingCounter, setLoadingCounter] = useState(true);
+  const [userCommunities, setUserCommunities] = useState([]);
+  const [loadingCommunity, setLoadingCommunity] = useState(true);
+
+  const getUserInfo = async () => {
+    try {
+      const dataUser = await axios.get(
+        `http://localhost:8000/api/user/${userId}`
+      );
+      setUserData(dataUser.data[0]);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setLoadingUser(false);
+    }
   };
+
+  const getUserCounter = async () => {
+    try {
+      const dataCounter = await axios.get(
+        `http://localhost:8000/api/post/${userId}`
+      );
+      setUserCounter(dataCounter.data[0]);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setLoadingCounter(false);
+    }
+  };
+
+  const getUserCommunities = async () => {
+    try {
+      const dataCommunity = await axios.get(
+        `http://localhost:8000/api/user/community/${userId}`
+      );
+      setUserCommunities(dataCommunity.data);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setLoadingCommunity(false);
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+    getUserCounter();
+    getUserCommunities();
+  }, []);
+
+  const { firstname, job, user_picture } = !loadingUser && userData;
+
+  const { count } = !loadingCounter && userCounter;
+
   const ComponentContainer = styled(Container)`
     border: solid 2px ${Theme.fiverrYellow};
     border-radius: 0.5rem;
@@ -57,33 +111,37 @@ export default function UserProfile() {
     width: 100%;
   `;
   return (
-    <ComponentContainer flex column aiCenter jcCenter>
-      <Title>Hello, {userData.userName} !</Title>
-      <ImageAvatar src={picture} />
-      <ProfileContainer flex column aiCenter jcCenter>
-        <ProfileTitle>{userData.job}</ProfileTitle>
-        <ProfileText>Contributions : {userData.contributions}</ProfileText>
-      </ProfileContainer>
-      <AddCommunityContainer flex row>
-        {userData.community1 && <Community>{userData.community1}</Community>}
-        {userData.community2 && <Community>{userData.community2}</Community>}
-        {userData.community3 && <Community>{userData.community3}</Community>}
-      </AddCommunityContainer>
-      <Container flex row>
-        <Select>
-          <option value="" disabled selected hidden>
-            Communities
-          </option>
-          <option value="graphism/design">Graphism/Design</option>
-          <option value="digital marketing">Digital marketing</option>
-          <option value="writing/translation">Writing/Translation</option>
-          <option value="video/animation">Video/Animation</option>
-          <option value="music/audio">Music/Audio</option>
-          <option value="programming/tech">Programming/Tech</option>
-          <option value="data">Data</option>
-        </Select>
-        <AddCommunityButton>Add a community</AddCommunityButton>
-      </Container>
-    </ComponentContainer>
+    !loadingUser &&
+    !loadingCounter &&
+    !loadingCommunity && (
+      <ComponentContainer flex column aiCenter jcCenter>
+        <Title>Hello, {firstname} !</Title>
+        <ImageAvatar src={user_picture} />
+        <ProfileContainer flex column aiCenter jcCenter>
+          <ProfileTitle>{job}</ProfileTitle>
+          <ProfileText>Contributions : {count}</ProfileText>
+        </ProfileContainer>
+        <AddCommunityContainer flex row>
+          {userCommunities.map((community) => (
+            <Community key={community.id}>{community.community_name}</Community>
+          ))}
+        </AddCommunityContainer>
+        <Container flex row>
+          <Select>
+            <option value="" disabled selected hidden>
+              Communities
+            </option>
+            <option value="graphism/design">Graphism/Design</option>
+            <option value="digital marketing">Digital marketing</option>
+            <option value="writing/translation">Writing/Translation</option>
+            <option value="video/animation">Video/Animation</option>
+            <option value="music/audio">Music/Audio</option>
+            <option value="programming/tech">Programming/Tech</option>
+            <option value="data">Data</option>
+          </Select>
+          <AddCommunityButton>Add a community</AddCommunityButton>
+        </Container>
+      </ComponentContainer>
+    )
   );
 }
