@@ -11,6 +11,7 @@ import UserContext from './components/assets/UserContext';
 import HomePage from './components/HomePage/HomePage';
 import Training from './components/Training/Training';
 import TechActualities from './components/TechActualities/TechActualities';
+import GoodDeals from './components/GoodDeals/GoodDeals';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -56,6 +57,7 @@ function App() {
           <div>
             <GlobalStyle />
             <UserProfile />
+            <GoodDeals />
             <NewPost />
             <Events />
             <TechActualities />
