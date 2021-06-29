@@ -10,6 +10,7 @@ import NewPost from './components/NewPost/NewPost';
 import UserContext from './components/assets/UserContext';
 import HomePage from './components/HomePage/HomePage';
 import Training from './components/Training/Training';
+import 'react-toastify/dist/ReactToastify.css';
 import TechActualities from './components/TechActualities/TechActualities';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         ));
       setUserInfo(dataUser.data[0]);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     } finally {
       setLoadingInfo(false);
