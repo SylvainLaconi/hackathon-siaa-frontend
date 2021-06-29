@@ -15,9 +15,9 @@ function App() {
       <Header />
       <GlobalStyle />
       <UserProfile />
-      <Events />
       <NewPost />
       <TechActualities />
+      <Events />
       <Training />
     </div>
   );

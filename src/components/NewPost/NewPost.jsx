@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Select,
+  Typography,
+} from '@material-ui/core';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import TextField from '@material-ui/core/TextField';
@@ -7,6 +15,10 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
   title: {
     paddingLeft: '6px',
   },
@@ -21,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewPost() {
   const [contentType, setContentType] = React.useState('event');
+  const [community, setCommunity] = React.useState('');
+  const handleChange = (event) => {
+    setCommunity(event.target.value);
+  };
   const classes = useStyles();
   const handleContentType = (event, newContentType) => {
     setContentType(newContentType);
@@ -43,6 +59,33 @@ export default function NewPost() {
         <Typography variant="h5" className={classes.title}>
           New Post
         </Typography>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="post-community">Community</InputLabel>
+          <Select
+            labelId="post-community"
+            id="post-community-select"
+            value={community}
+            onChange={handleChange}
+            MenuProps={{
+              getContentAnchorEl: null,
+              anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'left',
+              },
+              MenuListProps: {
+                disablePadding: true,
+              },
+            }}
+          >
+            <MenuItem value="graphism/design">Graphism/Design</MenuItem>
+            <MenuItem value="digital marketing">Digital marketing</MenuItem>
+            <MenuItem value="writing/translation">Writing/Translation</MenuItem>
+            <MenuItem value="video/animation">Video/Animation</MenuItem>
+            <MenuItem value="music/audio">Music/Audio</MenuItem>
+            <MenuItem value="programming/tech">Programming/Tech</MenuItem>
+            <MenuItem value="data">Data</MenuItem>
+          </Select>
+        </FormControl>
         <ToggleButtonGroup
           value={contentType}
           exclusive
@@ -70,6 +113,8 @@ export default function NewPost() {
         <TextField id="standard-basic" label="Title" />
         <TextField id="standard-basic" label="Picture" />
         <TextField id="standard-basic" label="Description" />
+        <TextField id="standard-basic" label="Date" />
+        <TextField id="standard-basic" label="Lieu" />
         <Button
           variant="contained"
           color="primary"
