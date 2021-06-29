@@ -8,36 +8,36 @@ import Input from '../assets/styles/Input';
 import { SmallButton } from '../assets/styles/Button';
 import UserContext from '../assets/UserContext';
 
+const HeaderContainer = styled(Container)`
+  justify-content: space-between;
+  border-bottom: solid 1px ${Theme.fiverrDarkGray};
+  margin-bottom: 10px;
+  width: 100%;
+`;
+const FiverrLogo = styled.img`
+  width: 5rem;
+  height: 3rem;
+  margin-left: 10rem;
+`;
+
+const LogOutIcon = styled(RiLogoutCircleRLine)`
+width: 1.5rem;
+height: 1.5rem;
+color: ${Theme.fiverrGreenMedium};
+margin-right: 2rem;
+cursor: pointer;:;
+`;
+
 export default function Header() {
   const { isLogged, setIsLogged, setUserId } = useContext(UserContext);
-  const [UserProfile, setUserProfile] = useState('');
-
-  const HeaderContainer = styled(Container)`
-    justify-content: space-between;
-    border-bottom: solid 1px ${Theme.fiverrDarkGray};
-    margin-bottom: 10px;
-    width: 100%;
-  `;
-  const FiverrLogo = styled.img`
-    width: 5rem;
-    height: 3rem;
-    margin-left: 10rem;
-  `;
-
-  const LogOutIcon = styled(RiLogoutCircleRLine)`
-    width: 1.5rem;
-    height: 1.5rem;
-    color: ${Theme.fiverrGreenMedium};
-    margin-right: 2rem;
-    cursor: pointer;:;
-  `;
+  const [userName, setUserName] = useState('');
 
   const HandleChange = (e) => {
-    setUserProfile(e.target.value);
+    setUserName(e.target.value);
   };
 
   const HandleLogging = () => {
-    setUserId(UserProfile);
+    setUserId(userName);
     setIsLogged(true);
   };
 
@@ -58,8 +58,8 @@ export default function Header() {
         >
           <Input
             placeholder="Login ..."
-            value={UserProfile}
-            onChange={HandleChange}
+            value={userName}
+            onChange={(e) => HandleChange(e)}
           />
 
           <SmallButton onClick={HandleLogging}>Logging</SmallButton>
