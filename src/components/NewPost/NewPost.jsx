@@ -70,6 +70,8 @@ export default function NewPost() {
         <TextField id="standard-basic" label="Title" />
         <TextField id="standard-basic" label="Picture" />
         <TextField id="standard-basic" label="Description" />
+        <TextField id="standard-basic" label="Date" />
+        <TextField id="standard-basic" label="Lieu" />
         <Button
           variant="contained"
           color="primary"
