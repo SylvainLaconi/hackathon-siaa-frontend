@@ -19,6 +19,7 @@ export default function UserProfile() {
     border-radius: 0.5rem;
     width: 20%;
     padding: 3%;
+    margin: 1%;
   `;
   const ImageAvatar = styled.img`
     clip-path: ellipse(50% 50%);
@@ -29,7 +30,6 @@ export default function UserProfile() {
   const ProfileContainer = styled(Container)`
     margin-top: 5%;
     padding: 0 7% 3% 7%;
-    background-color: ${Theme.colorLightgrey};
   `;
   const ProfileTitle = styled.h2`
     font-size: 1.2rem;
@@ -69,7 +69,7 @@ export default function UserProfile() {
         {userData.community2 && <Community>{userData.community2}</Community>}
         {userData.community3 && <Community>{userData.community3}</Community>}
       </AddCommunityContainer>
-      <AddCommunityContainer>
+      <Container flex row>
         <Select>
           <option value="" disabled selected hidden>
             Communities
@@ -83,7 +83,7 @@ export default function UserProfile() {
           <option value="data">Data</option>
         </Select>
         <AddCommunityButton>Add a community</AddCommunityButton>
-      </AddCommunityContainer>
+      </Container>
     </ComponentContainer>
   );
 }
