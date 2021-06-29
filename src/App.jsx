@@ -13,6 +13,7 @@ import Training from './components/Training/Training';
 import GoodDeals from './components/GoodDeals/GoodDeals';
 import 'react-toastify/dist/ReactToastify.css';
 import TechActualities from './components/TechActualities/TechActualities';
+import Forum from './components/Forum/Forum';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -64,6 +65,7 @@ function App() {
             <Events />
             <TechActualities />
             <Training />
+            <Forum />
           </div>
         ) : (
           <HomePage />
