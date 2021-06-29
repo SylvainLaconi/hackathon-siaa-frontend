@@ -11,7 +11,6 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { Image } from '@material-ui/icons';
 import mouse from '../assets/img/mouse.jpg';
 import screen from '../assets/img/screen.jpg';
 import cable from '../assets/img/cable.jpg';
@@ -49,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     paddingLeft: '6px',
+  },
+  photo: {
+    width: '150px',
+    paddingRight: '20px',
   },
 }));
 
@@ -91,14 +94,14 @@ export default function GoodDeals() {
           <TabPanel value={tab} index={0}>
             <List className={classes.root}>
               <ListItem>
-                <Image>image={mouse}</Image>
+                <img className={classes.photo} src={mouse} alt="mouse" />
                 <ListItemText
                   primary="Mouse"
                   secondary="June 29, 2021 This mouse is to sell for 5$."
                 />
               </ListItem>
               <ListItem>
-                <Image>image={screen}</Image>
+                <img className={classes.photo} src={screen} alt="screen" />
                 <ListItemText
                   primary="Screen 24 inch"
                   secondary="Juin 26, 2021 This Apple screen is to sell for 350$, color white."
@@ -106,7 +109,7 @@ export default function GoodDeals() {
               </ListItem>
               <ListItem>
                 <ListItemAvatar>
-                  <Image>image={cable}</Image>
+                  <img className={classes.photo} src={cable} alt="cable" />
                 </ListItemAvatar>
                 <ListItemText
                   primary="Cable USB"
@@ -118,14 +121,14 @@ export default function GoodDeals() {
           <TabPanel value={tab} index={1}>
             <List className={classes.root}>
               <ListItem>
-                <Image>image={computer}</Image>
+                <img className={classes.photo} src={computer} alt="computer" />
                 <ListItemText
                   primary="MacBook Air"
                   secondary="May 29, 2021 My MacBook Air is to rent for 40$/month."
                 />
               </ListItem>
               <ListItem>
-                <Image>image={tablet}</Image>
+                <img className={classes.photo} src={tablet} alt="tablet" />
                 <ListItemText
                   primary="iPad Pro 3 tablet"
                   secondary="May 25, 2021 This tablet is to rent for 35$/month."
@@ -133,7 +136,7 @@ export default function GoodDeals() {
               </ListItem>
               <ListItem>
                 <ListItemAvatar>
-                  <Image>image={printer}</Image>
+                  <img className={classes.photo} src={printer} alt="printer" />
                 </ListItemAvatar>
                 <ListItemText
                   primary="Printer HP officeJet Pro 8000"
