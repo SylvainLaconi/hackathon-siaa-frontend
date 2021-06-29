@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Theme from './Theme';
 
-const Input = styled.input`
+const StyledInput = styled.input`
   font-family: 'Montserrat', sans-serif;
   border-radius: 10px;
   padding: 0.3rem;
@@ -18,4 +18,4 @@ const Input = styled.input`
   }
 `;
 
-export default Input;
+export default StyledInput;
