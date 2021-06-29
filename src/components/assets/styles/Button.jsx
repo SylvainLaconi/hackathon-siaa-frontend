@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Theme from './Theme';
 
-const Button = styled.button`
+export const Button = styled.button`
   background-color: transparent;
   color: ${Theme.fiverrGreen};
   border: solid 2px;
@@ -16,4 +16,7 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export const SmallButton = styled(Button)`
+  width: auto;
+  margin: 0;
+`;
