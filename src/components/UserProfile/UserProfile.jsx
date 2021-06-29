@@ -11,9 +11,6 @@ import { Button } from '../assets/styles/Button';
 const ComponentContainer = styled(Container)`
   border: solid 2px ${Theme.fiverrYellow};
   border-radius: 0.5rem;
-  width: 20%;
-  padding: 3%;
-  margin: 1%;
 `;
 const ImageAvatar = styled.img`
   clip-path: ellipse(50% 50%);
@@ -21,10 +18,7 @@ const ImageAvatar = styled.img`
   width: 10rem;
   height: 10rem;
 `;
-const ProfileContainer = styled(Container)`
-  margin-top: 5%;
-  padding: 0 7% 3% 7%;
-`;
+const ProfileContainer = styled(Container)``;
 const ProfileTitle = styled.h2`
   font-size: 1.2rem;
 `;
@@ -32,8 +26,8 @@ const ProfileText = styled.p`
   font-size: 0.9rem;
 `;
 const AddCommunityButton = styled(Button)`
-  width: 9rem;
-  margin-left: 3rem;
+  width: 40%;
+  margin-left: 1rem;
 `;
 const Community = styled.div`
   background-color: ${Theme.fiverrYellow};
@@ -41,7 +35,7 @@ const Community = styled.div`
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   border-radius: 0.5rem;
-  width: 9rem;
+  width: 40%;
   text-align: center;
   vertical-align: middle;
 `;

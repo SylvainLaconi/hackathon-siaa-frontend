@@ -15,6 +15,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import TechActualities from './components/TechActualities/TechActualities';
 import Forum from './components/Forum/Forum';
 import Footer from './components/Footer/Footer';
+import {
+  MainContainer,
+  SideContainer,
+  CenterContainer,
+} from './components/assets/styles/StyledApp';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -58,19 +63,25 @@ function App() {
         <Header />
 
         {isLogged ? (
-          <div>
-            <GlobalStyle />
-            <UserProfile />
-            <GoodDeals />
-            <NewPost />
-            <Events />
-            <TechActualities />
-            <Training />
-            <Forum />
-          </div>
+          <MainContainer>
+            <SideContainer>
+              <UserProfile />
+              <Training />
+            </SideContainer>
+            <CenterContainer>
+              <NewPost />
+              <Events />
+              <TechActualities />
+            </CenterContainer>
+            <SideContainer>
+              <GoodDeals />
+              <Forum />
+            </SideContainer>
+          </MainContainer>
         ) : (
           <HomePage />
         )}
+        <GlobalStyle />
         <Footer />
       </UserContext.Provider>
     </div>

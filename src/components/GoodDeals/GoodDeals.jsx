@@ -76,7 +76,6 @@ export default function GoodDeals() {
       flexDirection="column"
       border="2px solid #be5272"
       borderRadius="6px"
-      m="20px"
     >
       <Box
         display="flex"
