@@ -96,8 +96,7 @@ export default function Events() {
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  A conference for developpers organized by Quantixx in the
-                  Palais des Congrès in Paris.
+                  {item.content}
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
