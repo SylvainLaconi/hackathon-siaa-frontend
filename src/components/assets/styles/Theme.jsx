@@ -27,6 +27,11 @@ export const Title = styled.h1`
   font-size: 1.5rem;
 `;
 
+export const StyledTitle = styled.h1`
+  font-family: 'Yellowtail';
+  font-size: '2rem';
+`;
+
 const Theme = {
   fiverrGreen: '#1dbf73',
   fiverrYellow: '#d0e500',

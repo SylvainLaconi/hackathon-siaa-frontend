@@ -4,7 +4,7 @@ import Theme from './Theme';
 export const Button = styled.button`
   background-color: transparent;
   color: ${Theme.fiverrGreen};
-  border: solid 2px;
+  border: solid 3px;
   border-radius: 0.5rem;
   padding: 0.7rem;
   width: 10rem;

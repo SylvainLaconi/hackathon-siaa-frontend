@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Theme, { Title, Container } from '../assets/styles/Theme';
+import Theme, { Container, StyledTitle } from '../assets/styles/Theme';
 import welcome from '../assets/img/welcome.jpg';
 
 const ComponentContainer = styled(Container)`
@@ -18,7 +18,7 @@ const Text = styled.p`
 const HomePage = () => {
   return (
     <ComponentContainer flex column aiCenter acCenter jcCenter>
-      <Title>Welcome on Fiverr Community !</Title>
+      <StyledTitle style={{ margin: 'O' }}> Welcome on Community !</StyledTitle>
       <Text>Please login to discover our strong and active community</Text>
       <WelcomePicture src={welcome} />
     </ComponentContainer>
