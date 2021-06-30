@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -12,6 +12,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { red } from '@material-ui/core/colors';
 import axios from 'axios';
+import UserContext from '../assets/UserContext';
 
 const useStyles = makeStyles(() => ({
   avatar: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles(() => ({
 
 export default function Events() {
   const classes = useStyles();
+  const { userInfo, newChange } = useContext(UserContext);
   const [events, setEvents] = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
 
@@ -44,7 +46,7 @@ export default function Events() {
   };
   useEffect(() => {
     getEventsData();
-  }, [loadingEvents]);
+  }, [loadingEvents, newChange]);
   return (
     <Box
       display="flex"
@@ -72,7 +74,10 @@ export default function Events() {
         gridGap="50px"
       >
         {events
-          .filter((item) => item.post_category_id === 1)
+          .filter(
+            (item) =>
+              item.post_category_id === 1 && item.user_id === userInfo.user_id
+          )
           .map((item) => (
             <Card className={classes.root}>
               <CardHeader
