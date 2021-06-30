@@ -86,7 +86,7 @@ export default function GoodDeals() {
         p="10px"
       >
         <Typography variant="h5" className={classes.title}>
-          The bargain corner
+          The Bargain Corner
         </Typography>
         <Paper className={classes.root}>
           <Tabs
@@ -124,32 +124,8 @@ export default function GoodDeals() {
                 ))}
             </List>
           </TabPanel>
+
           <TabPanel value={tab} index={1}>
-            <List className={classes.root}>
-              {goodDeals
-                .filter(
-                  (item) =>
-                    item.post_category_id === 2 &&
-                    item.user_id === userInfo.user_id
-                )
-                .map((item) => (
-                  <ListItem>
-                    <img
-                      className={classes.photo}
-                      src={item.picture}
-                      alt={item.title}
-                    />
-                    <ListItemText
-                      primary={item.title}
-                      secondary={`${item.date.substr(0, 10)}, This ${
-                        item.title
-                      } is to sell for ${item.content}.`}
-                    />
-                  </ListItem>
-                ))}
-            </List>
-          </TabPanel>
-          <TabPanel value={tab} index={2}>
             <List className={classes.root}>
               <ListItem>
                 <ListItemText

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { RiLogoutCircleRLine } from 'react-icons/ri/';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { ToastContainer, toast } from 'react-toastify';
-import Theme, { Container } from '../assets/styles/Theme';
+import Theme, { Container, StyledTitle } from '../assets/styles/Theme';
 import fiverrLogo from '../assets/img/fiverrLogo.svg';
 import StyledInput from '../assets/styles/Input';
 import { SmallButton } from '../assets/styles/Button';
@@ -21,11 +21,6 @@ const HeaderContainer = styled(Container)`
   right: 0;
   background-color: white;
   z-index: 1;
-`;
-const FiverrLogo = styled.img`
-  width: 5rem;
-  height: 3rem;
-  margin-left: 10rem;
 `;
 
 const LogOutIcon = styled(RiLogoutCircleRLine)`
@@ -54,7 +49,7 @@ export default function Header() {
       setIsLogged(true);
       toast.success('You are connected');
     } else {
-      toast.error('Wrong acount');
+      toast.error('Unknown account');
     }
   };
 
@@ -65,25 +60,61 @@ export default function Header() {
 
   return (
     <HeaderContainer flex aiCenter>
-      <FiverrLogo src={fiverrLogo} />
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      {!isLogged ? (
+      <div style={{ display: 'flex', width: '30%' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            width: '50%',
+          }}
+        >
+          <img
+            src={fiverrLogo}
+            alt="logo - fiverr"
+            style={{ width: '5rem', height: '3rem' }}
+          />
+        </div>
+
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            width: '5 rem',
-            marginRight: '1rem',
+            width: '50%',
+          }}
+        >
+          <StyledTitle
+            style={{
+              color: `${Theme.fiverrGreen}`,
+              margin: '0',
+            }}
+          >
+            Community
+          </StyledTitle>
+        </div>
+      </div>
+      <div style={{ display: 'flex', width: '40%' }}>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
+
+      {!isLogged ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            width: '30%',
+            paddingRight: '1rem',
           }}
         >
           <div
@@ -109,14 +140,15 @@ export default function Header() {
             />
           </div>
 
-          <SmallButton onClick={HandleLogging}>Sign in</SmallButton>
+          <SmallButton onClick={HandleLogging}>Log in</SmallButton>
         </div>
       ) : (
         <div
           style={{
             display: 'flex',
+            justifyContent: 'flex-end',
             alignItems: 'center',
-            width: '15 rem',
+            width: '30%',
             marginRight: '1rem',
           }}
         >

@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: red[500],
   },
   root: {
-    maxWidth: 700,
+    maxWidth: '700',
   },
   media: {
     height: 0,
@@ -89,7 +89,7 @@ export default function Events() {
               item.post_category_id === 1 && item.user_id === userInfo.user_id
           )
           .map((item) => (
-            <Card className={classes.root}>
+            <Card className={classes.root} style={{ margin: '0.5rem 1rem' }}>
               <CardHeader
                 action={
                   <IconButton aria-label="settings">

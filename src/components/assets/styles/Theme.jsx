@@ -24,7 +24,13 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   font-family: 'Roboto', sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+`;
+
+export const StyledTitle = styled.h1`
+  font-family: 'Yellowtail';
+  font-size: '2rem';
 `;
 
 const Theme = {
