@@ -13,13 +13,20 @@ import Training from './components/Training/Training';
 import GoodDeals from './components/GoodDeals/GoodDeals';
 import 'react-toastify/dist/ReactToastify.css';
 import TechActualities from './components/TechActualities/TechActualities';
+import Forum from './components/Forum/Forum';
 import Footer from './components/Footer/Footer';
+import {
+  MainContainer,
+  SideContainer,
+  CenterContainer,
+} from './components/assets/styles/StyledApp';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [userName, setUserName] = useState('');
   const [userInfo, setUserInfo] = useState([]);
   const [loadingInfo, setLoadingInfo] = useState(true);
+  const [newChange, setNewChange] = useState(true);
 
   const getUserInfo = async () => {
     try {
@@ -52,23 +59,32 @@ function App() {
           setUserName,
           userInfo,
           loadingInfo,
+          newChange,
+          setNewChange,
         }}
       >
         <Header />
 
         {isLogged ? (
-          <div>
-            <GlobalStyle />
-            <UserProfile />
-            <GoodDeals />
-            <NewPost />
-            <Events />
-            <TechActualities />
-            <Training />
-          </div>
+          <MainContainer>
+            <SideContainer>
+              <UserProfile />
+              <Training />
+            </SideContainer>
+            <CenterContainer>
+              <NewPost />
+              <Events />
+              <TechActualities />
+            </CenterContainer>
+            <SideContainer>
+              <GoodDeals />
+              <Forum />
+            </SideContainer>
+          </MainContainer>
         ) : (
           <HomePage />
         )}
+        <GlobalStyle />
         <Footer />
       </UserContext.Provider>
     </div>

@@ -51,7 +51,7 @@ export default function Events() {
       flexDirection="column"
       border="2px solid #ff80ae"
       borderRadius="6px"
-      m="20px"
+      style={{ margin: '1rem' }}
     >
       <Box
         display="flex"
@@ -61,7 +61,7 @@ export default function Events() {
         p="10px"
       >
         <Typography variant="h5" className={classes.title}>
-          Communauty Events
+          Community Events
         </Typography>
       </Box>
       <Box display="flex" justifyContent="center" m="20px" gridGap="50px">

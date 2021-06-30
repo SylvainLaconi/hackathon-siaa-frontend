@@ -2,6 +2,8 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { RiLogoutCircleRLine } from 'react-icons/ri/';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { ToastContainer, toast } from 'react-toastify';
 import Theme, { Container } from '../assets/styles/Theme';
 import fiverrLogo from '../assets/img/fiverrLogo.svg';
 import StyledInput from '../assets/styles/Input';
@@ -43,8 +45,17 @@ export default function Header() {
   };
 
   const HandleLogging = () => {
-    setUserName(loggedName);
-    setIsLogged(true);
+    if (
+      loggedName === 'doe' ||
+      loggedName === 'green' ||
+      loggedName === 'wilson'
+    ) {
+      setUserName(loggedName);
+      setIsLogged(true);
+      toast.success('You are connected');
+    } else {
+      toast.error('Wrong acount');
+    }
   };
 
   const HandleLoggout = () => {
@@ -55,20 +66,50 @@ export default function Header() {
   return (
     <HeaderContainer flex aiCenter>
       <FiverrLogo src={fiverrLogo} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {!isLogged ? (
         <div
           style={{
+            display: 'flex',
+            alignItems: 'center',
             width: '5 rem',
             marginRight: '1rem',
           }}
         >
-          <StyledInput
-            placeholder="Login ..."
-            value={loggedName}
-            onChange={HandleChange}
-          />
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginRight: '0.5rem',
+            }}
+          >
+            <AccountCircleIcon />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginRight: '0.5rem',
+            }}
+          >
+            <StyledInput
+              placeholder="Login ..."
+              value={loggedName}
+              onChange={HandleChange}
+            />
+          </div>
 
-          <SmallButton onClick={HandleLogging}>Logging</SmallButton>
+          <SmallButton onClick={HandleLogging}>Sign in</SmallButton>
         </div>
       ) : (
         <div
@@ -79,7 +120,6 @@ export default function Header() {
             marginRight: '1rem',
           }}
         >
-          <StyledInput placeholder="Search ..." />
           <LogOutIcon onClick={HandleLoggout} />
         </div>
       )}

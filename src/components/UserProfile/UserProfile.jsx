@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 import UserContext from '../assets/UserContext';
 import Select from '../assets/styles/Select';
@@ -11,9 +11,6 @@ import { Button } from '../assets/styles/Button';
 const ComponentContainer = styled(Container)`
   border: solid 2px ${Theme.fiverrYellow};
   border-radius: 0.5rem;
-  width: 20%;
-  padding: 3%;
-  margin: 1%;
 `;
 const ImageAvatar = styled.img`
   clip-path: ellipse(50% 50%);
@@ -21,10 +18,7 @@ const ImageAvatar = styled.img`
   width: 10rem;
   height: 10rem;
 `;
-const ProfileContainer = styled(Container)`
-  margin-top: 5%;
-  padding: 0 7% 3% 7%;
-`;
+const ProfileContainer = styled(Container)``;
 const ProfileTitle = styled.h2`
   font-size: 1.2rem;
 `;
@@ -32,8 +26,8 @@ const ProfileText = styled.p`
   font-size: 0.9rem;
 `;
 const AddCommunityButton = styled(Button)`
-  width: 9rem;
-  margin-left: 3rem;
+  width: 40%;
+  margin-left: 1rem;
 `;
 const Community = styled.div`
   background-color: ${Theme.fiverrYellow};
@@ -41,7 +35,7 @@ const Community = styled.div`
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   border-radius: 0.5rem;
-  width: 9rem;
+  width: 40%;
   text-align: center;
   vertical-align: middle;
 `;
@@ -52,7 +46,8 @@ const AddCommunityContainer = styled(Container)`
 `;
 
 export default function UserProfile() {
-  const { userInfo, loadingInfo } = useContext(UserContext);
+  const { userInfo, loadingInfo, setNewChange, newChange } =
+    useContext(UserContext);
 
   const [userCounter, setUserCounter] = useState(0);
   const [loadingCounter, setLoadingCounter] = useState(true);
@@ -132,6 +127,7 @@ export default function UserProfile() {
         community_id: newCommunityId,
       });
       setNewCommunity(true);
+      setNewChange(!newChange);
       toast.success('Community correctly added');
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -164,26 +160,17 @@ export default function UserProfile() {
             value={selectedCommunity}
             onChange={(e) => setSelectedCommunity(e.target.value)}
           >
+            <option>-- Select community --</option>
             {communityList.map((community) => (
               <option key={community.id}>{community.community_name}</option>
             ))}
           </Select>
-          <AddCommunityButton onClick={postNewCommunity}>
+          <AddCommunityButton
+            onClick={selectedCommunity !== '' && postNewCommunity}
+          >
             Add a community
           </AddCommunityButton>
         </Container>
-
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
       </ComponentContainer>
     )
   );
