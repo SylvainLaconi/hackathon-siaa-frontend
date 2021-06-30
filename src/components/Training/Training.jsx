@@ -87,7 +87,7 @@ export default function Training() {
                     color="textSecondary"
                     component="p"
                   >
-                    {item.date} | {item.location}
+                    {item.date.substr(0, 10)} | {item.location}
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>

@@ -23,7 +23,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
 `;
 

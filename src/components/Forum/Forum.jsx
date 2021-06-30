@@ -73,7 +73,8 @@ export default function Forum() {
                   </IconButton>
                 }
                 title={`${topic.title}`}
-                subheader={`${topic.date} | ${topic.community_name}`}
+                subheader={`${topic.date.substr(0, 10)} 
+                  | ${topic.community_name}`}
               />
               <CardContent>
                 <Typography variant="body2" color="textPrimary" component="p">
