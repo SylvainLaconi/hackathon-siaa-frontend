@@ -12,7 +12,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ChatIcon from '@material-ui/icons/Chat';
 import styled from 'styled-components';
 import UserContext from '../assets/UserContext';
-import Theme, { Title, Container } from '../assets/styles/Theme';
+import Theme, { Title } from '../assets/styles/Theme';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -24,13 +24,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ComponentContainer = styled(Container)`
+const ComponentContainer = styled.div`
+  display: 'flex';
+  flex-direction: 'column';
   border: solid 2px ${Theme.fiverrGreen};
   border-radius: 0.5rem;
   margin-top: 1rem;
+  width: 100%;
+  text-align: center;
 `;
-const CardContainer = styled(Container)`
-  margin: 5% 0 0 0;
+const CardContainer = styled.div`
+  display: 'flex';
+  margin-bottom: 0.5rem;
+  text-align: center;
 `;
 
 export default function Training() {
@@ -53,7 +59,7 @@ export default function Training() {
     getTrainingData();
   }, [loadingTraining, newChange]);
   return (
-    <ComponentContainer flex column jcCenter>
+    <ComponentContainer>
       <Title>Training</Title>
       {training
         .filter(
@@ -63,7 +69,7 @@ export default function Training() {
         .map((item) => {
           return (
             <CardContainer>
-              <Card className={classes.root}>
+              <Card className={classes.root} style={{ margin: '0 auto' }}>
                 <CardMedia
                   className={classes.media}
                   image={item.picture}
