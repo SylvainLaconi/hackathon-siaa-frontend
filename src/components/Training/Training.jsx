@@ -35,7 +35,7 @@ const CardContainer = styled(Container)`
 
 export default function Training() {
   const classes = useStyles();
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, newChange } = useContext(UserContext);
   const [training, setTraining] = useState([]);
   const [loadingTraining, setLoadingTraining] = useState(true);
   const getTrainingData = async () => {
@@ -51,7 +51,7 @@ export default function Training() {
   };
   useEffect(() => {
     getTrainingData();
-  }, [loadingTraining]);
+  }, [loadingTraining, newChange]);
   return (
     <ComponentContainer flex column jcCenter>
       <Title>Training</Title>

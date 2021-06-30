@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GoodDeals() {
   const classes = useStyles();
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, newChange } = useContext(UserContext);
   const [goodDeals, setGoodDeals] = useState([]);
   const [loadingGoodDeals, setLoadingGoodDeals] = useState(true);
   const [tab, setTab] = React.useState(0);
@@ -69,7 +69,8 @@ export default function GoodDeals() {
   };
   useEffect(() => {
     getGoodDealsData();
-  }, [loadingGoodDeals]);
+  }, [loadingGoodDeals, newChange]);
+
   return (
     <Box
       display="flex"

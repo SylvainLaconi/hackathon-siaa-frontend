@@ -26,6 +26,7 @@ function App() {
   const [userName, setUserName] = useState('');
   const [userInfo, setUserInfo] = useState([]);
   const [loadingInfo, setLoadingInfo] = useState(true);
+  const [newChange, setNewChange] = useState(true);
 
   const getUserInfo = async () => {
     try {
@@ -58,6 +59,8 @@ function App() {
           setUserName,
           userInfo,
           loadingInfo,
+          newChange,
+          setNewChange,
         }}
       >
         <Header />

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 import UserContext from '../assets/UserContext';
 import Select from '../assets/styles/Select';
@@ -46,7 +46,8 @@ const AddCommunityContainer = styled(Container)`
 `;
 
 export default function UserProfile() {
-  const { userInfo, loadingInfo } = useContext(UserContext);
+  const { userInfo, loadingInfo, setNewChange, newChange } =
+    useContext(UserContext);
 
   const [userCounter, setUserCounter] = useState(0);
   const [loadingCounter, setLoadingCounter] = useState(true);
@@ -126,6 +127,7 @@ export default function UserProfile() {
         community_id: newCommunityId,
       });
       setNewCommunity(true);
+      setNewChange(!newChange);
       toast.success('Community correctly added');
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -158,26 +160,17 @@ export default function UserProfile() {
             value={selectedCommunity}
             onChange={(e) => setSelectedCommunity(e.target.value)}
           >
+            <option>-- Select community --</option>
             {communityList.map((community) => (
               <option key={community.id}>{community.community_name}</option>
             ))}
           </Select>
-          <AddCommunityButton onClick={postNewCommunity}>
+          <AddCommunityButton
+            onClick={selectedCommunity !== '' && postNewCommunity}
+          >
             Add a community
           </AddCommunityButton>
         </Container>
-
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
       </ComponentContainer>
     )
   );

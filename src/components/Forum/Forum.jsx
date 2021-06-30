@@ -36,7 +36,7 @@ const CardContainer = styled(Container)`
 
 export default function Forum() {
   const classes = useStyles();
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, newChange } = useContext(UserContext);
 
   const [topics, setTopics] = useState([]);
   const [loadingTopic, setLoadingTopic] = useState(true);
@@ -53,7 +53,7 @@ export default function Forum() {
   };
   useEffect(() => {
     getTopicData();
-  }, [loadingTopic]);
+  }, [loadingTopic, newChange]);
 
   return (
     <ComponentContainer flex column jcCenter>
