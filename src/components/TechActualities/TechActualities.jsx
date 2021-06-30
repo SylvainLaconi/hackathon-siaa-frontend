@@ -6,20 +6,18 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import CardHeader from '@material-ui/core/CardHeader';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatIcon from '@material-ui/icons/Chat';
-import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components';
 import UserContext from '../assets/UserContext';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 
 const useStyles = makeStyles(() => ({
   root: {
-    maxWidth: '40%',
+    maxWidth: 700,
   },
   media: {
     height: 0,
@@ -28,12 +26,14 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ComponentContainer = styled(Container)`
-  border: solid 2px ${Theme.fiverrPinkLight};
-  border-radius: 0.5rem;
+  border: solid 3px ${Theme.fiverrOrangeMedium};
+  border-radius: 6px;
   margin: 0 1rem;
+  padding: 1rem;
 `;
 const CardContainer = styled(Container)`
   margin: 0 0 0 0;
+  margin-bottom: 0.5rem;
 `;
 const Link = styled.a`
   font-size: 0.9rem;
@@ -76,21 +76,15 @@ export default function TechActualities() {
             <CardContainer>
               <Card className={classes.root}>
                 <CardHeader
-                  avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar} />
-                  }
                   action={
                     <IconButton aria-label="settings">
                       <MoreVertIcon />
                     </IconButton>
                   }
-                  title={`${item.firstname} ${item.lastname}`}
-                  subheader={`${item.date} | ${item.location}`}
+                  title={item.title}
+                  subheader={`${item.date.substr(0, 10)} | ${item.location}`}
                 />
                 <CardContent>
-                  <Typography variant="body1" color="textPrimary" component="p">
-                    {item.title}
-                  </Typography>
                   <CardMedia
                     className={classes.media}
                     image={item.picture}

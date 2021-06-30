@@ -5,21 +5,23 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ChatIcon from '@material-ui/icons/Chat';
 import { red } from '@material-ui/core/colors';
 import axios from 'axios';
+import styled from 'styled-components';
 import UserContext from '../assets/UserContext';
+import Theme from '../assets/styles/Theme';
 
 const useStyles = makeStyles(() => ({
   avatar: {
     backgroundColor: red[500],
   },
   root: {
-    maxWidth: 345,
+    maxWidth: 700,
   },
   media: {
     height: 0,
@@ -29,6 +31,14 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '6px',
   },
 }));
+const Link = styled.a`
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: ${Theme.fiverrPink};
+  &:hover {
+    color: ${Theme.fiverrPinkLight};
+  }
+`;
 
 export default function Events() {
   const classes = useStyles();
@@ -51,7 +61,7 @@ export default function Events() {
     <Box
       display="flex"
       flexDirection="column"
-      border="2px solid #ff80ae"
+      border="3px solid #ff80ae"
       borderRadius="6px"
       style={{ margin: '1rem' }}
     >
@@ -81,11 +91,6 @@ export default function Events() {
           .map((item) => (
             <Card className={classes.root}>
               <CardHeader
-                avatar={
-                  <Avatar aria-label="event" className={classes.avatar}>
-                    M
-                  </Avatar>
-                }
                 action={
                   <IconButton aria-label="settings">
                     <MoreVertIcon />
@@ -111,6 +116,17 @@ export default function Events() {
                 <IconButton aria-label="share">
                   <ShareIcon />
                 </IconButton>
+                <IconButton>
+                  <ChatIcon />
+                </IconButton>
+                <Link
+                  href={item.content}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="article"
+                >
+                  See more
+                </Link>
               </CardActions>
               <CardContent />
             </Card>

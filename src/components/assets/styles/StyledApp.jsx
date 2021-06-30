@@ -19,4 +19,5 @@ export const CenterContainer = styled.div`
   flex-direction: column;
   width: 50%;
   height: 100%;
+  margin-bottom: 5rem;
 `;
