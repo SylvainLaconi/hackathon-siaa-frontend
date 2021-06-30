@@ -64,7 +64,13 @@ export default function Events() {
           Community Events
         </Typography>
       </Box>
-      <Box display="flex" justifyContent="center" m="20px" gridGap="50px">
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        m="20px"
+        gridGap="50px"
+      >
         {events
           .filter((item) => item.post_category_id === 1)
           .map((item) => (
@@ -81,7 +87,7 @@ export default function Events() {
                   </IconButton>
                 }
                 title={item.title}
-                subheader={item.date}
+                subheader={item.date.substr(0, 10)}
               />
               <CardMedia
                 className={classes.media}

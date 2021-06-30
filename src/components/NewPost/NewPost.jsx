@@ -12,7 +12,6 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -115,12 +114,7 @@ export default function NewPost() {
         <TextField id="standard-basic" label="Description" />
         <TextField id="standard-basic" label="Date" />
         <TextField id="standard-basic" label="Lieu" />
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          endIcon={<Icon>send</Icon>}
-        >
+        <Button variant="contained" color="primary" className={classes.button}>
           Post
         </Button>
       </Box>
