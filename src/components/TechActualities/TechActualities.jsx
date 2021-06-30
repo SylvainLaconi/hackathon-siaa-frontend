@@ -17,7 +17,7 @@ import Theme, { Title, Container } from '../assets/styles/Theme';
 
 const useStyles = makeStyles(() => ({
   root: {
-    maxWidth: 700,
+    maxWidth: '700',
   },
   media: {
     height: 0,
@@ -32,8 +32,7 @@ const ComponentContainer = styled(Container)`
   padding: 1rem;
 `;
 const CardContainer = styled(Container)`
-  margin: 0 0 0 0;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 1rem;
 `;
 const Link = styled.a`
   font-size: 0.9rem;

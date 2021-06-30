@@ -18,7 +18,7 @@ const Text = styled.p`
 const HomePage = () => {
   return (
     <ComponentContainer flex column aiCenter acCenter jcCenter>
-      <StyledTitle style={{ margin: 'O' }}> Welcome on Community !</StyledTitle>
+      <StyledTitle style={{ margin: 'O' }}> Welcome on board !</StyledTitle>
       <Text>Please login to discover our strong and active community</Text>
       <WelcomePicture src={welcome} />
     </ComponentContainer>

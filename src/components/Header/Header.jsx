@@ -140,7 +140,7 @@ export default function Header() {
             />
           </div>
 
-          <SmallButton onClick={HandleLogging}>Sign in</SmallButton>
+          <SmallButton onClick={HandleLogging}>Log in</SmallButton>
         </div>
       ) : (
         <div
