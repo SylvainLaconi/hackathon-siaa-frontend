@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, CardActionArea, makeStyles, Typography } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -11,10 +11,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { red } from '@material-ui/core/colors';
-import devoxx from '../assets/img/devoxx-france.png';
-import mixit from '../assets/img/mixit2021.jpg';
-import reactSummit from '../assets/img/reactSummit2021.png';
-import dddeurope from '../assets/img/DDD-europe2022.jpg';
+import axios from 'axios';
 
 const useStyles = makeStyles(() => ({
   avatar: {
@@ -34,7 +31,20 @@ const useStyles = makeStyles(() => ({
 
 export default function Events() {
   const classes = useStyles();
+  const [events, setEvents] = useState([]);
+  const [loadingEvents, setLoadingEvents] = useState(true);
 
+  const getEventsData = async () => {
+    try {
+      const eventsData = await axios.get(`http://localhost:8000/api/post`);
+      setEvents(eventsData.data);
+    } finally {
+      setLoadingEvents(false);
+    }
+  };
+  useEffect(() => {
+    getEventsData();
+  }, [loadingEvents]);
   return (
     <Box
       display="flex"
@@ -54,161 +64,52 @@ export default function Events() {
           Community Events
         </Typography>
       </Box>
-      <Box display="flex" justifyContent="center" m="20px" gridGap="50px">
-        <Card className={classes.root}>
-          <CardActionArea href="https://dddeurope.com/" target="_blank">
-            <CardHeader
-              avatar={
-                <Avatar aria-label="event" className={classes.avatar}>
-                  M
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        m="20px"
+        gridGap="50px"
+      >
+        {events
+          .filter((item) => item.post_category_id === 1)
+          .map((item) => (
+            <Card className={classes.root}>
+              <CardHeader
+                avatar={
+                  <Avatar aria-label="event" className={classes.avatar}>
+                    M
+                  </Avatar>
+                }
+                action={
+                  <IconButton aria-label="settings">
+                    <MoreVertIcon />
+                  </IconButton>
+                }
+                title={item.title}
+                subheader={item.date.substr(0, 10)}
+              />
+              <CardMedia
+                className={classes.media}
+                image={item.picture}
+                title={item.title}
+              />
+              <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {item.content}
+                </Typography>
+              </CardContent>
+              <CardActions disableSpacing>
+                <IconButton aria-label="add to favorites">
+                  <FavoriteIcon />
                 </IconButton>
-              }
-              title="DDD Europe"
-              subheader="June 23-24, 2022"
-            />
-            <CardMedia
-              className={classes.media}
-              image={dddeurope}
-              title="DDD Europe 2022"
-            />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                A conference for developpers organized by Quantixx in the Palais
-                des Congrès in Paris.
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-            </CardActions>
-            <CardContent />
-          </CardActionArea>
-        </Card>
-        <Card className={classes.root}>
-          <CardActionArea href="https://www.devoxx.fr/" target="_blank">
-            <CardHeader
-              avatar={
-                <Avatar aria-label="event" className={classes.avatar}>
-                  M
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
+                <IconButton aria-label="share">
+                  <ShareIcon />
                 </IconButton>
-              }
-              title="Devoxx France"
-              subheader="From September 29 to October 1st, 2021"
-            />
-            <CardMedia
-              className={classes.media}
-              image={devoxx}
-              title="Devoxx France 2021"
-            />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                A conference for developpers organized by Quantixx in the Palais
-                des Congrès in Paris.
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-            </CardActions>
-            <CardContent />
-          </CardActionArea>
-        </Card>
-        <Card className={classes.root}>
-          <CardActionArea href="https://mixitconf.org/" target="_blank">
-            <CardHeader
-              avatar={
-                <Avatar aria-label="event" className={classes.avatar}>
-                  M
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              title="MiXiT 2021"
-              subheader="May 18, 19 & 20, 2021"
-            />
-            <CardMedia
-              className={classes.media}
-              image={mixit}
-              title="MiXiT 2021"
-            />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                A conference for developpers. This year, for its 10th edition,
-                the conferences are online, in french and in english !
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-            </CardActions>
-            <CardContent />
-          </CardActionArea>
-        </Card>
-        <Card className={classes.root}>
-          <CardActionArea
-            href="https://remote.reactsummit.com/"
-            target="_blank"
-          >
-            <CardHeader
-              avatar={
-                <Avatar aria-label="event" className={classes.avatar}>
-                  M
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              title="React Summit"
-              subheader="April 14-16, 2021"
-            />
-            <CardMedia
-              className={classes.media}
-              image={reactSummit}
-              title="React Summit 2021"
-            />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                The biggest React conference in the cloud !
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-            </CardActions>
-            <CardContent />
-          </CardActionArea>
-        </Card>
+              </CardActions>
+              <CardContent />
+            </Card>
+          ))}
       </Box>
     </Box>
   );

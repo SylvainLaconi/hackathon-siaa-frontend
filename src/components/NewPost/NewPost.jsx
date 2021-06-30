@@ -13,7 +13,6 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import axios from 'axios';
 import UserContext from '../assets/UserContext';
 
@@ -153,7 +152,6 @@ export default function NewPost() {
             variant="contained"
             color="primary"
             className={classes.button}
-            endIcon={<Icon>send</Icon>}
           >
             Post
           </Button>
