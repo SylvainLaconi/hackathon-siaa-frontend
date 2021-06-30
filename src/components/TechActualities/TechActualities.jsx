@@ -46,7 +46,7 @@ const Link = styled.a`
 
 export default function TechActualities() {
   const classes = useStyles();
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, newChange } = useContext(UserContext);
   const [actualities, setActualities] = useState([]);
   const [loadingActualities, setLoadingActualities] = useState(true);
   const getActualitiesData = async () => {
@@ -62,7 +62,7 @@ export default function TechActualities() {
   };
   useEffect(() => {
     getActualitiesData();
-  }, [loadingActualities]);
+  }, [loadingActualities, newChange]);
   return (
     <ComponentContainer flex column jcCenter>
       <Title>Tech Actualities</Title>
