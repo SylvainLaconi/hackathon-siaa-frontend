@@ -75,7 +75,7 @@ export default function GoodDeals() {
     <Box
       display="flex"
       flexDirection="column"
-      border="2px solid #be5272"
+      border="3px solid #be5272"
       borderRadius="6px"
     >
       <Box
@@ -96,8 +96,7 @@ export default function GoodDeals() {
             textColor="primary"
             centered
           >
-            <Tab label="To sell" />
-            <Tab label="To rent" />
+            <Tab label="To sell/To rent" />
             <Tab label="Classified ad" />
           </Tabs>
           <TabPanel value={tab} index={0}>

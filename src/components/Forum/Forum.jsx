@@ -26,12 +26,14 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ComponentContainer = styled(Container)`
-  border: solid 2px ${Theme.fiverrOrangeLight};
-  border-radius: 0.5rem;
+  border: solid 3px ${Theme.fiverrGreenMedium};
+  border-radius: 6px;
   margin-top: 1rem;
+  text-align: center;
 `;
 const CardContainer = styled(Container)`
   margin: 0 0 0 0;
+  margin-bottom: 0.5rem;
 `;
 
 export default function Forum() {
@@ -73,7 +75,8 @@ export default function Forum() {
                   </IconButton>
                 }
                 title={`${topic.title}`}
-                subheader={`${topic.date} | ${topic.community_name}`}
+                subheader={`${topic.date.substr(0, 10)} 
+                  | ${topic.community_name}`}
               />
               <CardContent>
                 <Typography variant="body2" color="textPrimary" component="p">
