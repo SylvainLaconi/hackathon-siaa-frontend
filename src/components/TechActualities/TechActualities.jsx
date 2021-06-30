@@ -28,8 +28,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ComponentContainer = styled(Container)`
-  border: solid 2px ${Theme.fiverrPinkLight};
-  border-radius: 0.5rem;
+  border: solid 3px ${Theme.fiverrPinkLight};
+  border-radius: 6px;
   margin: 0 1rem;
 `;
 const CardContainer = styled(Container)`

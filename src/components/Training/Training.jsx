@@ -27,8 +27,8 @@ const useStyles = makeStyles(() => ({
 const ComponentContainer = styled.div`
   display: 'flex';
   flex-direction: 'column';
-  border: solid 2px ${Theme.fiverrGreen};
-  border-radius: 0.5rem;
+  border: solid 3px ${Theme.fiverrGreen};
+  border-radius: 6px;
   margin-top: 1rem;
   width: 100%;
   text-align: center;

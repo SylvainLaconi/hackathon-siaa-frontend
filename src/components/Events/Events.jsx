@@ -50,7 +50,7 @@ export default function Events() {
     <Box
       display="flex"
       flexDirection="column"
-      border="2px solid #ff80ae"
+      border="3px solid #ff80ae"
       borderRadius="6px"
       style={{ margin: '1rem' }}
     >

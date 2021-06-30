@@ -26,8 +26,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ComponentContainer = styled(Container)`
-  border: solid 2px ${Theme.fiverrOrangeLight};
-  border-radius: 0.5rem;
+  border: solid 3px ${Theme.fiverrOrangeLight};
+  border-radius: 6px;
   margin-top: 1rem;
 `;
 const CardContainer = styled(Container)`

@@ -9,8 +9,8 @@ import Select from '../assets/styles/Select';
 import { Button } from '../assets/styles/Button';
 
 const ComponentContainer = styled(Container)`
-  border: solid 2px ${Theme.fiverrYellow};
-  border-radius: 0.5rem;
+  border: solid 3px ${Theme.fiverrYellow};
+  border-radius: 6px;
 `;
 const ImageAvatar = styled.img`
   clip-path: ellipse(50% 50%);
