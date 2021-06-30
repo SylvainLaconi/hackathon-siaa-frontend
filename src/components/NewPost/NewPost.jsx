@@ -90,7 +90,7 @@ export default function NewPost() {
       <Box
         display="flex"
         flexDirection="column"
-        border="2px solid #ff7640"
+        border="3px solid #ff7640"
         borderRadius="6px"
         style={{ margin: '0 1rem' }}
       >
