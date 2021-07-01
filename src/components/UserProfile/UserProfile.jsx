@@ -123,7 +123,7 @@ export default function UserProfile() {
     getUserCounter();
     getUserCommunities();
     getCommunityList();
-  }, [newCommunity, userInfo]);
+  }, [newCommunity, userInfo, newChange]);
 
   const { firstname, job, user_picture } = !loadingInfo && userInfo;
 

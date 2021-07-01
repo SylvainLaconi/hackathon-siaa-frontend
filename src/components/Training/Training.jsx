@@ -59,7 +59,7 @@ export default function Training() {
   }, [loadingTraining, newChange]);
   return (
     <ComponentContainer>
-      <Title>Training</Title>
+      <Title>Trainings</Title>
       {training
         .filter(
           (item) =>
