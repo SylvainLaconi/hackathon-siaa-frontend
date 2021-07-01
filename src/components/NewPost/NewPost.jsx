@@ -110,6 +110,14 @@ export default function NewPost() {
       // eslint-disable-next-line no-console
       console.log(error);
       toast.error(`${error.message}`);
+    } finally {
+      setCommunity('');
+      setTitle('');
+      setPicture('');
+      setContent('');
+      setContentType('');
+      setDate('');
+      setLocation('');
     }
   };
   return (
@@ -198,7 +206,7 @@ export default function NewPost() {
           />
           <TextField
             id="standard-basic"
-            label="Lieu"
+            label="Location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
