@@ -12,7 +12,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ChatIcon from '@material-ui/icons/Chat';
 import styled from 'styled-components';
 import UserContext from '../assets/UserContext';
-import Theme, { Title } from '../assets/styles/Theme';
+import { Title } from '../assets/styles/Theme';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -27,10 +27,10 @@ const useStyles = makeStyles(() => ({
 const ComponentContainer = styled.div`
   display: 'flex';
   flex-direction: 'column';
-  border: solid 3px ${Theme.fiverrGreen};
-  border-radius: 6px;
+  border-radius: 0px;
   margin-top: 1rem;
   text-align: center;
+  background-color: white;
 `;
 const CardContainer = styled.div`
   display: 'flex';

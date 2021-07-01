@@ -26,7 +26,7 @@ const HeaderContainer = styled(Container)`
 const LogOutIcon = styled(RiLogoutCircleRLine)`
   width: 1.5rem;
   height: 1.5rem;
-  color: ${Theme.fiverrGreenMedium};
+  color: black;
   margin-right: 2rem;
   cursor: pointer;
 `;
@@ -134,6 +134,7 @@ export default function Header() {
             }}
           >
             <StyledInput
+              type="password"
               placeholder="Login ..."
               value={loggedName}
               onChange={HandleChange}
