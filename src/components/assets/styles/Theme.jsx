@@ -20,6 +20,7 @@ export const Container = styled.div`
   ${(props) => props.aiCenter && 'align-items:center'};
   ${(props) => props.acCenter && 'align-content:center'};
   ${(props) => props.jcCenter && 'justify-content:center'};
+  background-color: white;
 `;
 
 export const Title = styled.h1`

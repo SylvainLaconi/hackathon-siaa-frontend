@@ -61,9 +61,9 @@ export default function Events() {
     <Box
       display="flex"
       flexDirection="column"
-      border="3px solid #ff80ae"
-      borderRadius="6px"
+      borderRadius="0px"
       style={{ margin: '1rem' }}
+      bgcolor="white"
     >
       <Box
         display="flex"

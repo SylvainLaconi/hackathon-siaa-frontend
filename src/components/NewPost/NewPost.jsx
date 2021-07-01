@@ -27,9 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: theme.spacing(1),
-    backgroundColor: '#8f2900',
+    color: 'white',
+    backgroundColor: '#1dbf73',
     '&:hover': {
-      backgroundColor: '#ff7640',
+      backgroundColor: '#d0f7e6',
+      color: 'black',
     },
   },
 }));
@@ -116,8 +118,8 @@ export default function NewPost() {
       <Box
         display="flex"
         flexDirection="column"
-        border="3px solid #ff7640"
-        borderRadius="6px"
+        borderRadius="0px"
+        bgcolor="white"
         style={{ margin: '0 1rem' }}
       >
         <Box
@@ -126,6 +128,7 @@ export default function NewPost() {
           alignItems="center"
           gridGap="20px"
           p="10px"
+          backgroundColor="white"
         >
           <Typography variant="h5" className={classes.title}>
             New Post
@@ -201,7 +204,7 @@ export default function NewPost() {
           />
           <Button
             variant="contained"
-            color="primary"
+            color="black"
             className={classes.button}
             onClick={postNewPost}
           >

@@ -26,8 +26,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ComponentContainer = styled(Container)`
-  border: solid 3px ${Theme.fiverrOrangeMedium};
-  border-radius: 6px;
+  border-radius: 0px;
   margin: 0 1rem;
   padding: 1rem;
 `;

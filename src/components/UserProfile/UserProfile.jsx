@@ -3,14 +3,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core';
 import Theme, { Title, Container } from '../assets/styles/Theme';
 import UserContext from '../assets/UserContext';
 import Select from '../assets/styles/Select';
-import { Button } from '../assets/styles/Button';
 
 const ComponentContainer = styled(Container)`
-  border: solid 3px ${Theme.fiverrYellow};
-  border-radius: 6px;
+  border-radius: 0px;
 `;
 const ImageAvatar = styled.img`
   clip-path: ellipse(50% 50%);
@@ -25,16 +25,16 @@ const ProfileTitle = styled.h2`
 const ProfileText = styled.p`
   font-size: 0.9rem;
 `;
-const AddCommunityButton = styled(Button)`
-  width: 40%;
-  margin-left: 1rem;
-`;
+// const AddCommunityButton = styled(Button)`
+//   width: 40%;
+//   margin-left: 1rem;
+// `;
 const Community = styled.div`
-  background-color: ${Theme.fiverrYellow};
+  background-color: ${Theme.fiverrGreenLight};
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
-  border-radius: 0.5rem;
+  border-radius: 6px;
   width: 40%;
   text-align: center;
   vertical-align: middle;
@@ -44,6 +44,25 @@ const AddCommunityContainer = styled(Container)`
   flex-wrap: wrap;
   width: 100%;
 `;
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  title: {
+    paddingLeft: '6px',
+  },
+  button: {
+    margin: theme.spacing(1.5),
+    backgroundColor: '#1dbf73',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#d0f7e6',
+      color: 'black',
+    },
+  },
+}));
 
 export default function UserProfile() {
   const { userInfo, loadingInfo, setNewChange, newChange } =
@@ -137,7 +156,7 @@ export default function UserProfile() {
       setNewCommunity(false);
     }
   };
-
+  const classes = useStyles();
   return (
     !loadingInfo &&
     !loadingCounter &&
@@ -165,11 +184,14 @@ export default function UserProfile() {
               <option key={community.id}>{community.community_name}</option>
             ))}
           </Select>
-          <AddCommunityButton
+          <Button
+            variant="contained"
+            size="small"
+            className={classes.button}
             onClick={selectedCommunity !== '' && postNewCommunity}
           >
-            Add a community
-          </AddCommunityButton>
+            Add
+          </Button>
         </Container>
       </ComponentContainer>
     )

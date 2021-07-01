@@ -12,7 +12,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatIcon from '@material-ui/icons/Chat';
 import styled from 'styled-components';
-import Theme, { Title, Container } from '../assets/styles/Theme';
+import { Title, Container } from '../assets/styles/Theme';
 import UserContext from '../assets/UserContext';
 
 const useStyles = makeStyles(() => ({
@@ -26,8 +26,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ComponentContainer = styled(Container)`
-  border: solid 3px ${Theme.fiverrGreenMedium};
-  border-radius: 6px;
+  border-radius: 0px;
   margin-top: 1rem;
   text-align: center;
 `;
